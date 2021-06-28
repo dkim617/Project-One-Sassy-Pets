@@ -1,0 +1,7 @@
+group6bootcamp@yahoo.com
+
+SassyPets
+petfinders pw: SassyPets1!
+
+API Key: ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ
+SECRET KEY: clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ
