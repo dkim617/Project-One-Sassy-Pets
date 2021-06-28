@@ -1,6 +1,5 @@
 # Project One: Sassy Dogs
 
-
 ## Description
 
 ## Technologies used
