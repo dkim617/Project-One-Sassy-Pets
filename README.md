@@ -8,6 +8,9 @@
 ## Screenshot
 
 ## URLs
+petfinder api :https://api.petfinder.com/v2/animals
+
+jokes api : https://api.jokes.one
 
 <a href="https://github.com/mlward639/Project-One-Sassy-Dogs">Link to GitHub Repository</a>
 
