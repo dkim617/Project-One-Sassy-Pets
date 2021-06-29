@@ -1,6 +1,17 @@
+body { background-color: rgb(146, 206, 206);
+    margin: 25px;
+    background-image: url("../css/background.jpg")
+
+}
+
 .logo {
   width: 350px;
   height: 350px;
+  margin-bottom: 25px;
+  border-radius: 10px 10px 10px;
+  
+   
+
 }
 
 .btn {
@@ -19,12 +30,28 @@
   font-weight: 400;
   box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px,
     rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
-  transition: all 0.2s;
+  transition: all 0.2s; 
+  float: right;
+  
 }
 
 .zip-code {
   margin: 20px;
   box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px,
     rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+    float: right;
 
 }
+
+img {
+  border: 10px solid #555;
+}
+
+.dropdown {
+    
+}
+
+.zip-code {
+
+}
+
