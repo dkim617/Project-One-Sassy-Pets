@@ -19,8 +19,7 @@
 <!-- title container -->
  <header>
 
-     <!-- <h1>Sassy Pets</h1>  
-     -->
+     <h1>Sassy Pets</h1>
      <div class="logoContainer">
          <img src='./assets/SassyPets(1).png' class="logo" />
      </div>
@@ -29,33 +28,65 @@
  </header>
      
 
-
+<body>
 
 <!-- main content container -->
 
 
+<!-- Search bar container -->
+  <div class="containerSearch">
+    <div class="row">
+        <div class="col-sm-8 col-md-3 container2">
+            <h2>Search for your new pet: </h2>
+              <form>
+                  <div class="animal-type-div">
+                    <input class="form-control zip-code" id="input-zip-code" placeholder="Enter zip code" aria-describedby="zipHelp">
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Animal Type</button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item1" value="dog">Dog</a></li>
+                        <li><a class="dropdown-item2" value="cat">Cat</a></li>
+                        <li><a class="dropdown-item" value="#">Something else here</a></li>
+                      </ul>
+                  </div>
+        <!-- other buttons if group wants -->
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Size</button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        <li class="dropdown-item" value="small">size</li>
+                        <li class="dropdown-item" value="medium">size</li>
+                        <li class="dropdown-item" value="large">size</li>
+                        <li class="dropdown-item" value="xlarge">size</li>
+                      </ul>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">Age</button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                        <li class="dropdown-item" value="baby">baby</li>
+                        <li class="dropdown-item" value="young">young</li>
+                        <li class="dropdown-item" value="adult">adult</li>
+                        <li class="dropdown-item" value="senior">senior</li>
+                      </ul>
+                  </div>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">Gender</button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                        <li class="dropdown-item" value="female">female</li>
+                        <li class="dropdown-item" value="male">male</li>
+                      </ul>
+                  </div>
+                  <button class="btn btn-primary search-btn" type="button" value="Input">Search</button>
+              </form>
 
- <div class="mainContainer">  
-  
-    <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Animal Type
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
-
- <input class="zip-code"  placeholder="Enter Zip Code">
- <br>  
-
- <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#MyModal">Search</button>
-
- 
-
+        <div class="container3">
+          <ul class= "saved-pets">
+          </ul>
+        </div>
+    
+    </div>
 </div>  
+
 
 <!-- Modal -->
 <div class="modal fade" id="MyModal" tabindex="-1" aria-labelledby="MyModalLabel" aria-hidden="true">
@@ -84,18 +115,16 @@
 </div> 
 
 <!-- img -->
-
 <img src="assets/css/placeholder.jpg"  height="550" aria-placeholder="dog selection">
 
-
-
 <!--footer-->
+<script src = "assets/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src= 'assets/js/script.js'></script>
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src= 'assets/js/script.js'></script>
 </body>
 
 
