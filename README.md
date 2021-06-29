@@ -26,7 +26,7 @@ THEN I am can search for another pet with new parameters.
 ## APIs
 <a href="https://api.petfinder.com/v2/animals">Petfinder API</a>
 
-<a href='https://api.jokes.one'>Jokes API</a>
+<a href='https://sv443.net/jokeapi/v2/'>Jokes API</a>
 
 ## Screenshot
 Screenshot of wireframe
