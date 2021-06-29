@@ -1,14 +1,55 @@
-
-//kyle's stuff
+//set variables
 const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
 const petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
 const petAToken = "";
 const jokeEndPoint =
   "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit";
 
-  //on page load check local storage for access token
+var inputedZipCode = ''  
+var blankInputEl = document.querySelector("#input-zip-code");
+var typeDropdown = document.querySelector('#dropdownMenuButton1');
+var sizeDropdown = document.querySelector('#dropdownMenuButton2');
+var ageDropdown = document.querySelector('#dropdownMenuButton3');
+var genderDropdown = document.querySelector('#dropdownMenuButton4');
+
+var savedPetIDArray = [];
+var getSavedPetIDArray=[];
+var savedPets = document.querySelector('.saved-pets')
 
 
+//on page load check local storage for access token
+
+
+//input value set to the zip code. error messages if empty 
+function getInputValue () {
+  inputedZipCode = blankInputEl.value;
+  console.log("inputed zip: " + inputedZipCode);
+  if (!inputedZipCode) {
+      //change to a modal, no alerts allowed: window.alert("No city entered.");
+      blankInputEl.value = ''; 
+  }
+} 
+
+//get value of drop down buttons 
+function getOptionType() {
+  output = typeDropdown.value;
+  console.log("OUTPUT: " + output);
+}
+
+function getOptionSize() {
+  output = sizeDropdown.value;
+  console.log("OUTPUT: " + output);
+}
+
+function getOptionAge() {
+  output = ageDropdown.value;
+  console.log("OUTPUT: " + output);
+}
+
+function getOptionGender() {
+  output = genderDropdown.value;
+  console.log("OUTPUT: " + output);
+}
 
 //if res.status !== 200
 //how to structure call
@@ -35,7 +76,7 @@ function getNewAToken() {
 }
 
 //fetch pet data
-//params: type, size, gender, age, zipcode
+//params: type, size, gender, age, zipcode(var = inputedZipCode)
 //return: name, breed, size, gender, age, color, coat, adoption organization & location, and personality traits
 function fetchPet(params) {
   let url = "";
@@ -61,6 +102,25 @@ function fetchPet(params) {
   else getNewAToken();
 }
 
+//get saved ID from local storage
+function getSavedPetID (){
+  getSavedPetIDArray = JSON.parse(localStorage.getItem("savedPetIDArray")) || [];  
+  console.log("get pet ID ARRAY: " + getSavedPetIDArray);
+  for (i=0; i< getSavedPetIDArray.length; i++) {
+      var generatedPetIDLi = document.createElement('li');
+      generatedPetIDLi.classList.add("generated-pet-ID-li");
+      generatedPetIDBtn = document.createElement('BUTTON');
+      generatedPetIDBtn.value = getSavedPetIDArray[i]; 
+      console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
+      generatedPetIDBtn.classList.add("generated-pet-ID-btn");        
+      generatedPetIDLi.appendChild(generatedPetIDBtn);
+      generatedPetIDBtn.textContent = "Saved Pet "+ [i];  
+      savedPets.appendChild(generatedCityLi);
+      getSavedPet();
+  }
+}
+
+//run saved ID through API
 //GET https://api.petfinder.com/v2/animals/{id}
 function getSavedPet(id) {
   let url = `https://api.petfinder.com/v2/animals/${id}`;
@@ -92,53 +152,6 @@ function fetchJoke() {
     .then((data) => console.log(data));
 }
 
-//Maggies stuff 
-
-var inputedZipCode = ''  
-var blankInputEl = document.querySelector("#input-zip-code");
-var typeDropdown = document.querySelector('#dropdownMenuButton1');
-var sizeDropdown = document.querySelector('#dropdownMenuButton2');
-var ageDropdown = document.querySelector('#dropdownMenuButton3');
-var genderDropdown = document.querySelector('#dropdownMenuButton3');
-
-var savedPetIDArray = [];
-var getSavedPetIDArray=[];
-var savedPets = document.querySelector('.saved-pets')
-
-
-
-//input value set to the zip code. error messages if empty 
-function getInputValue () {
-    inputedZipCode = blankInputEl.value;
-    console.log("inputed zip: " + inputedZipCode);
-    if (!inputedZipCode) {
-        //change to a modal, no alerts allowed: window.alert("No city entered.");
-        blankInputEl.value = ''; 
-    }
-} 
-
-//get value of drop down buttons 
-function getOptionType() {
-    output = typeDropdown.value;
-    console.log("OUTPUT: " + output);
-}
-
-function getOptionSize() {
-    output = sizeDropdown.value;
-    console.log("OUTPUT: " + output);
-}
-
-function getOptionAge() {
-    output = ageDropdown.value;
-    console.log("OUTPUT: " + output);
-}
-
-function getOptionGender() {
-    output = genderDropdown.value;
-    console.log("OUTPUT: " + output);
-}
-
-
 
 
 //click save button - david. add value to the saved button to equal the unique pet ID.
@@ -169,20 +182,3 @@ function clickGeneratedPetIDBtn () {
 }
 */
 
-function getSavedPetID (){
-    getSavedPetIDArray = JSON.parse(localStorage.getItem("savedPetIDArray")) || [];  
-    console.log("get pet ID ARRAY: " + getSavedPetIDArray);
-    for (i=0; i< getSavedPetIDArray.length; i++) {
-        var generatedPetIDLi = document.createElement('li');
-        generatedPetIDLi.classList.add("generated-pet-ID-li");
-        generatedPetIDBtn = document.createElement('BUTTON');
-        generatedPetIDBtn.value = getSavedPetIDArray[i]; 
-        console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
-        generatedPetIDBtn.classList.add("generated-pet-ID-btn");        
-        generatedPetIDLi.appendChild(generatedPetIDBtn);
-        generatedPetIDBtn.textContent = "Saved Pet "+ [i];  
-        savedPets.appendChild(generatedCityLi);
-        //API FXN();
-        clickGeneratedPetIDBtn();
-    }
-}
