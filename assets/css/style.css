@@ -9,6 +9,7 @@ body { background-color: rgb(146, 206, 206);
   height: 350px;
   margin-bottom: 25px;
   border-radius: 10px 10px 10px;
+  box-shadow: 5px 5px 5px rgb(163, 159, 159);
   
    
 
@@ -29,7 +30,7 @@ body { background-color: rgb(146, 206, 206);
   font-size: 30px;
   font-weight: 400;
   box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px,
-    rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+    rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px; 
   transition: all 0.2s; 
   float: right;
   
@@ -45,6 +46,9 @@ body { background-color: rgb(146, 206, 206);
 
 img {
   border: 10px solid #555;
+  box-shadow: 5px 5px 5px rgb(163, 159, 159);
+  
+
 }
 
 .dropdown {
