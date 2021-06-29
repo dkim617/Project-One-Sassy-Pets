@@ -26,6 +26,7 @@ var
 //modal variables
 var petNameTitle = document.querySelector('#MyModalLabel');
 var searchedPetPic = document.querySelector('.pulled-pet-img');
+var petJoke = document.querySelector('.pet-joke');
 var modalPetDescriptionSection = document.querySelector('#modal-pet-description');
 var listPetDescriptors = document.querySelector('#pulledPetDescriptors');
 var breed = document.querySelector('.breed');
@@ -162,7 +163,10 @@ function fetchJoke() {
     "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,racist,sexist,explicit"
   )
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+      console.log(data)
+      petJoke.textContent = data./*pet joke from API*/;
+    });
 }
 
 
