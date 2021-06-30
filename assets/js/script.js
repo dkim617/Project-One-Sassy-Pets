@@ -1,17 +1,9 @@
 //set variables
-<<<<<<< HEAD
 /*const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
 const petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
 const petAToken = "";
 const jokeEndPoint =
   "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit"; */
-=======
-var petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
-var petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
-var petAToken = "";
-var jokeEndPoint =
-  "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit";
->>>>>>> c8b5089fe59df3712af818ae8bde17434cca8370
 
 //search variables
 var inputedZipCode = ''  
@@ -101,8 +93,6 @@ function getOptionType(){
     console.log("OUTPUT type: " + optionTypeChoice);
   }
 
->>>>>>> 9079c5c15b0067e37a45ca551d3f72dbc33d3f86
-
 function getOptionSize() {
   optionSizeChoice = sizeDropdown.options[sizeDropdown.selectedIndex].value;
   console.log("OUTPUT size: " + optionSizeChoice);
@@ -118,13 +108,13 @@ function getOptionGender() {
   console.log("OUTPUT F/M: " + optionGenderChoice);
 }
 
-<<<<<<< HEAD
 function getRandom(array) {
   var randomIndex = Math.floor(Math.random() * array.length);
   var randomPet = array[randomIndex];
   console.log("RANDOM PET SELECTED: " + randomPet);
   return randomPet;
-=======
+}
+
 //on page load check local storage for access token
 async function checkForLocalAToken() {
   let aKey = localStorage.getItem("petFinderAKey");
@@ -135,7 +125,6 @@ async function checkForLocalAToken() {
     petAToken = newToken.access_token;
     console.log("got a new token!");
   } else petAToken = aKey;
->>>>>>> c8b5089fe59df3712af818ae8bde17434cca8370
 }
 
 //if res.status !== 200
@@ -175,37 +164,6 @@ async function fetchPet(params) {
   await checkForLocalAToken();
   let url = "";
   //testing- get by id:100
-<<<<<<< HEAD
-  const testUrl = "https://api.petfinder.com/v2/animals/100";
-  if (petAToken !== "") {
-    fetch(testUrl, {
-      method: "get",
-      headers: new Headers({
-        Authorization: `Bearer ${petAToken}`,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        //give data to modal
-        getRandom("NAME OF THE ARRAY OF THE 20 LISTED PETS")
-        console.log(data)
-        breed.textContent = "Breed: " /* + data.randomPet.API breed data*/;
-        size.textContent = "Size: " /* + data.randomPet.API size data*/;
-        gender.textContent = "Gender: " /* + data.randomPet.API gender data*/;
-        age.textContent = "Age: " /* + data.randomPet.API age data*/;
-        color.textContent = "Color: " /* + data.randomPet.API color data*/;
-        coat.textContent = "Coat: " /* + data.randomPet.API coat data*/;
-        adoptionOrgAndLocation.textContent = "Adoption Organization: " /* + data.randomPet.API organization name data + "in " + data./*API organization location data*/ ;
-        personality.textContent = "Personality traits: " /* + data.randomPet.API personality traits data*/;
-      })
-      .catch((err) => {
-        console.log(err);
-        getNewAToken();
-        fetchPet(params);
-      });
-  }
-  else getNewAToken();
-=======
   const testUrl = "https://api.petfinder.com/v2/animals?type=dog";
   $.ajax({
     type: "GET",
@@ -217,15 +175,16 @@ async function fetchPet(params) {
     },
     success: function (res) {
       console.log(res);
+      getRandom("NAME OF THE ARRAY OF THE 20 LISTED PETS") //check if works, may need to change array name based on what petfinder API calls it
       //run randomFunction, destructure res obj
-      breed.textContent = "Breed: " /* + data.API breed data*/;
-        size.textContent = "Size: " /* + data.API size data*/;
-        gender.textContent = "Gender: " /* + data.API gender data*/;
-        age.textContent = "Age: " /* + data.API age data*/;
-        color.textContent = "Color: " /* + data.API color data*/;
-        coat.textContent = "Coat: " /* + data.API coat data*/;
-        adoptionOrgAndLocation.textContent = "Adoption Organization: " /* + data.API organization name data + "in " + data./*API organization location data*/ ;
-        personality.textContent = "Personality traits: " /* + data.API personality traits data*/;
+      breed.textContent = "Breed: " /* + res.API breed data*/;
+        size.textContent = "Size: " /* + res.API size data*/;
+        gender.textContent = "Gender: " /* + res.API gender data*/;
+        age.textContent = "Age: " /* + res.API age data*/;
+        color.textContent = "Color: " /* + res.API color data*/;
+        coat.textContent = "Coat: " /* + res.API coat data*/;
+        adoptionOrgAndLocation.textContent = "Adoption Organization: " /* + res.API organization name data + "in " + res./*API organization location data*/ ;
+        personality.textContent = "Personality traits: " /* + res.API personality traits data*/;
     },
     error: async function (err) {
       console.log("uh oh ", err);
@@ -256,7 +215,6 @@ async function getSavedPet(id) {
       //add error handling
     },
   });
->>>>>>> c8b5089fe59df3712af818ae8bde17434cca8370
 }
 
 //old (rate limit of 60/day) > https://jokes.one/api/joke/?ref=devresourc.es#:~:text=that%20is%20returned.-,Get%20a%20random%20Joke,-To%20get%20a
