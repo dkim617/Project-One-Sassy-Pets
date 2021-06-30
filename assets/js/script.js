@@ -5,12 +5,18 @@ const petAToken = "";
 const jokeEndPoint =
   "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit";
 
+//search variables
 var inputedZipCode = ''  
 var blankInputEl = document.querySelector("#input-zip-code");
 var typeDropdown = document.querySelector('#dropdownMenuButton1');
 var sizeDropdown = document.querySelector('#dropdownMenuButton2');
 var ageDropdown = document.querySelector('#dropdownMenuButton3');
 var genderDropdown = document.querySelector('#dropdownMenuButton4');
+
+var optionTypeChoice;
+var optionSizeChoice;
+var optionAgeChoice;
+var optionGenderChoice;
 
 var uniquePetID;
 
@@ -19,13 +25,14 @@ var getSavedPetIDArray=[];
 var savedPetsUL = document.querySelector('.saved-pets')
 
 //API data variables
-var petName = //data._______;
-var petPic = //data.______;
-var 
+var petName; //= data._______;
+var petPic; //= data.______;
+ 
 
 //modal variables
 var petNameTitle = document.querySelector('#MyModalLabel');
 var searchedPetPic = document.querySelector('.pulled-pet-img');
+var petJoke = document.querySelector('.pet-joke');
 var modalPetDescriptionSection = document.querySelector('#modal-pet-description');
 var listPetDescriptors = document.querySelector('#pulledPetDescriptors');
 var breed = document.querySelector('.breed');
@@ -44,7 +51,6 @@ var searchBtn = document.querySelector('.search-btn');
 
 
 
-
 //on page load check local storage for access token
 
 /* --------------------------------------------------------------------*/
@@ -57,8 +63,8 @@ searchBtn.addEventListener('click', function (){
   getOptionSize();
   getOptionAge();
   getOptionGender();
-  fetchPet(params);
-  fetchJoke();
+  //fetchPet(params);
+  //fetchJoke();
   blankInputEl.value = ''; 
   return;
 })
@@ -68,30 +74,31 @@ function getInputValue () {
   inputedZipCode = blankInputEl.value;
   console.log("inputed zip: " + inputedZipCode);
   if (!inputedZipCode) {
-      /*change to a modal, no alerts allowed: */ window.alert("No city entered.");
+      /*change to a modal, no alerts allowed: */ window.alert("No zip code entered.");
       blankInputEl.value = ''; 
   }
 } 
 
 //get value of drop down buttons 
-function getOptionType() {
-  output = typeDropdown.value;
-  console.log("OUTPUT: " + output);
-}
+function getOptionType(){
+    optionTypeChoice = typeDropdown.options[typeDropdown.selectedIndex].value;
+    console.log("OUTPUT type: " + optionTypeChoice);
+  }
+
 
 function getOptionSize() {
-  output = sizeDropdown.value;
-  console.log("OUTPUT: " + output);
+  optionSizeChoice = sizeDropdown.options[sizeDropdown.selectedIndex].value;
+  console.log("OUTPUT size: " + optionSizeChoice);
 }
 
 function getOptionAge() {
-  output = ageDropdown.value;
-  console.log("OUTPUT: " + output);
+  optionAgeChoice = ageDropdown.options[ageDropdown.selectedIndex].value;
+  console.log("OUTPUT age: " + optionAgeChoice);
 }
 
 function getOptionGender() {
-  output = genderDropdown.value;
-  console.log("OUTPUT: " + output);
+  optionGenderChoice = genderDropdown.options[genderDropdown.selectedIndex].value;
+  console.log("OUTPUT F/M: " + optionGenderChoice);
 }
 
 //if res.status !== 200
@@ -125,7 +132,7 @@ function fetchPet(params) {
   let url = "";
   //testing- get by id:100
   const testUrl = "https://api.petfinder.com/v2/animals/100";
-  )if (petAToken !== "" {
+  if (petAToken !== "") {
     fetch(testUrl, {
       method: "get",
       headers: new Headers({
@@ -136,14 +143,14 @@ function fetchPet(params) {
       .then((data) => {
         //give data to modal
         console.log(data)
-        breed.textContent = "Breed: " + data./*API breed data*/;
-        size.textContent = "Size: " + data./*API size data*/;
-        gender.textContent = "Gender: " + data./*API gender data*/;
-        age.textContent = "Age: " + data./*API age data*/;
-        color.textContent = "Color: " + data./*API color data*/;
-        coat.textContent = "Coat: " + data./*API coat data*/;
-        adoptionOrgAndLocation.textContent = "Adoption Organization: " + data./*API organization name data*/ + "in " + data./*API organization location data*/ ;
-        personality.textContent = "Personality traits: " + data./*API personality traits data*/;
+        breed.textContent = "Breed: " /* + data.API breed data*/;
+        size.textContent = "Size: " /* + data.API size data*/;
+        gender.textContent = "Gender: " /* + data.API gender data*/;
+        age.textContent = "Age: " /* + data.API age data*/;
+        color.textContent = "Color: " /* + data.API color data*/;
+        coat.textContent = "Coat: " /* + data.API coat data*/;
+        adoptionOrgAndLocation.textContent = "Adoption Organization: " /* + data.API organization name data + "in " + data./*API organization location data*/ ;
+        personality.textContent = "Personality traits: " /* + data.API personality traits data*/;
       })
       .catch((err) => {
         console.log(err);
@@ -162,10 +169,13 @@ function fetchJoke() {
     "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,racist,sexist,explicit"
   )
     .then((response) => response.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+      console.log(data)
+      petJoke.textContent /* =  data.pet joke from API*/;
+    });
 }
 
-
+/* ******************PUSH AGAIN FOR JOKE API WHEN PULL APPROVED ************/
 
 /* --------------------------------------------------------------*/
 //WHEN CLICK SAVE BUTTON: 
