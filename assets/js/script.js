@@ -85,9 +85,6 @@ function getOptionType(){
     console.log("OUTPUT type: " + optionTypeChoice);
   }
 
-<<<<<<< HEAD
-  
-=======
 
 function getOptionSize() {
   optionSizeChoice = sizeDropdown.options[sizeDropdown.selectedIndex].value;
@@ -104,7 +101,6 @@ function getOptionGender() {
   console.log("OUTPUT F/M: " + optionGenderChoice);
 }
 
->>>>>>> e7925a3471c2cb8b83db1a6357ce22d462e0a383
 //if res.status !== 200
 //how to structure call
 //https://stackoverflow.com/questions/65514400/api-access-token-expiration-is-very-short
