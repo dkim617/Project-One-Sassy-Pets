@@ -1,9 +1,9 @@
 //set variables
-const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
+/*const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
 const petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
 const petAToken = "";
 const jokeEndPoint =
-  "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit";
+  "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit"; */
 
 //search variables
 var inputedZipCode = ''  
@@ -69,15 +69,23 @@ searchBtn.addEventListener('click', function (){
   return;
 })
 
+var myErrorEmptyModal = document.querySelector("#MyErrorEmptyModal");
+
 //input value set to the zip code. error messages if empty 
 function getInputValue () {
   inputedZipCode = blankInputEl.value;
   console.log("inputed zip: " + inputedZipCode);
   if (!inputedZipCode) {
-      /*change to a modal, no alerts allowed: */ window.alert("No zip code entered.");
-      blankInputEl.value = ''; 
+    window.alert("error")
+    myErrorEmptyModal.show();
+    console.log("WORKED")    
+    };  
+    blankInputEl.value = ''; 
+    return;
+
+
   }
-} 
+
 
 //get value of drop down buttons 
 function getOptionType(){
