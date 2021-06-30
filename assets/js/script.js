@@ -101,6 +101,13 @@ function getOptionGender() {
   console.log("OUTPUT F/M: " + optionGenderChoice);
 }
 
+function getRandom(array) {
+  var randomIndex = Math.floor(Math.random() * array.length);
+  var randomPet = array[randomIndex];
+  console.log("RANDOM PET SELECTED: " + randomPet);
+  return randomPet;
+}
+
 //if res.status !== 200
 //how to structure call
 //https://stackoverflow.com/questions/65514400/api-access-token-expiration-is-very-short
@@ -142,15 +149,16 @@ function fetchPet(params) {
       .then((response) => response.json())
       .then((data) => {
         //give data to modal
+        getRandom("NAME OF THE ARRAY OF THE 20 LISTED PETS")
         console.log(data)
-        breed.textContent = "Breed: " /* + data.API breed data*/;
-        size.textContent = "Size: " /* + data.API size data*/;
-        gender.textContent = "Gender: " /* + data.API gender data*/;
-        age.textContent = "Age: " /* + data.API age data*/;
-        color.textContent = "Color: " /* + data.API color data*/;
-        coat.textContent = "Coat: " /* + data.API coat data*/;
-        adoptionOrgAndLocation.textContent = "Adoption Organization: " /* + data.API organization name data + "in " + data./*API organization location data*/ ;
-        personality.textContent = "Personality traits: " /* + data.API personality traits data*/;
+        breed.textContent = "Breed: " /* + data.randomPet.API breed data*/;
+        size.textContent = "Size: " /* + data.randomPet.API size data*/;
+        gender.textContent = "Gender: " /* + data.randomPet.API gender data*/;
+        age.textContent = "Age: " /* + data.randomPet.API age data*/;
+        color.textContent = "Color: " /* + data.randomPet.API color data*/;
+        coat.textContent = "Coat: " /* + data.randomPet.API coat data*/;
+        adoptionOrgAndLocation.textContent = "Adoption Organization: " /* + data.randomPet.API organization name data + "in " + data./*API organization location data*/ ;
+        personality.textContent = "Personality traits: " /* + data.randomPet.API personality traits data*/;
       })
       .catch((err) => {
         console.log(err);
