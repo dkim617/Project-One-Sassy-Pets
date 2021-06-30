@@ -6,38 +6,58 @@ body {
   font-family: "Bangers", cursive;
 }
 
-nav {
+.navbarContainer  {
     margin-top: 10px;
-    padding: 10px;
-    text-align: center;
-    font-size: 35px;
-    border: 10px solid #555;
-
+    text-align: left;
+    /* padding-bottom: 5px;
+    padding-top: 5px; */
+    border: solid;
+    
 }
+    
+
+   
+    
+
+.navbarContainer img {
+    width: 10%;
+    height: 10%;
+    ;
+    
+    
+}
+   
+
+
 
 h1  {
   font-family: "Bangers", cursive;
-  margin-top: 65px;
-  text-align: center;
+  /* margin-top: 35px; */
+  /* text-align: center;
   display: inline;
-  margin: 95px;
-  margin-left: 15px;
+  margin: 25px; */
+  /* margin-left: 15px; */
+  font-size: 25px;
+  
 }
 
 p{
     font-family: "Bangers", cursive;
     font-size: 40px;
+    margin: 10px;
+    margin-top: 5%;
+    
 }
 
 
-.logo {
+/* .logo {
   width: 350px;
   height: 350px;
   margin-bottom: 35px;
   border-radius: 10px 10px 10px;
   box-shadow: 5px 5px 5px rgb(163, 159, 159);
   margin-left: 10px;
-}
+} */
 
 .btn {
   display: inline-block;
@@ -50,19 +70,19 @@ p{
   background: #fff;
   line-height: 15px;
   border-radius: 15px;
-  padding: 15px;
-  font-size: 30px;
+  padding: 10px;
+  font-size: 25px;
   font-weight: 400;
   box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px,
     rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
   transition: all 0.2s;
   float: right;
   /* margin-right: 36px; */
-  margin-top: 23px;
+  margin-top: 20px;
 }
 
 .zip-code {
-  margin: 20px;
+  margin: 15px;
   box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px,
     rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
 }
@@ -79,6 +99,7 @@ img {
     flex-direction: column;
     align-items: center;
     display: flex;
+    
 
 }
 
@@ -107,5 +128,6 @@ a{
     margin-right: 15px;
 }
 .row{
-    margin-right: 0;
+    margin-right: 25px;
+    co
 }
