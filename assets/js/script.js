@@ -47,8 +47,15 @@ var saveBtn = document.querySelector('#save-changes-btn');
 
 var generatedPetIDLi;
 
-var searchBtn = document.querySelector('.search-btn');
+var searchBtn = document.getElementById('search-btn');
+var closeModal= document.getElementsById('myModal');
 
+function Close(){
+  modal.style.display= 'none'
+}
+
+var close = document.getElementsByClassName('closebtn');
+closebtn.addEventListener('click', Close);
 
 
 //on page load check local storage for access token
