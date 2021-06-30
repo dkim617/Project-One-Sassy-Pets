@@ -1,8 +1,8 @@
 //set variables
-const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
-const petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
-const petAToken = "";
-const jokeEndPoint =
+var petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
+var petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
+var petAToken = "";
+var jokeEndPoint =
   "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit";
 
 //search variables
@@ -85,6 +85,7 @@ function getOptionType(){
     console.log("OUTPUT type: " + optionTypeChoice);
   }
 
+>>>>>>> 9079c5c15b0067e37a45ca551d3f72dbc33d3f86
 
 function getOptionSize() {
   optionSizeChoice = sizeDropdown.options[sizeDropdown.selectedIndex].value;
@@ -101,49 +102,68 @@ function getOptionGender() {
   console.log("OUTPUT F/M: " + optionGenderChoice);
 }
 
+//on page load check local storage for access token
+async function checkForLocalAToken() {
+  let aKey = localStorage.getItem("petFinderAKey");
+  if (aKey === null) {
+    let newToken = await getNewAToken().then((data) => {
+      return data;
+    });
+    petAToken = newToken.access_token;
+    console.log("got a new token!");
+  } else petAToken = aKey;
+}
+
 //if res.status !== 200
 //how to structure call
-//https://stackoverflow.com/questions/65514400/api-access-token-expiration-is-very-short
-function getNewAToken() {
+//https://stackoverflow.com/questions/65514400/api-access-token-expiration-is-very-short > cors issue
+//https://stackoverflow.com/questions/47604040/how-to-get-data-returned-from-fetch-promise > return Promise issue
+async function getNewAToken() {
   let url = "https://api.petfinder.com/v2/oauth2/token";
-  let curl = `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSKey}`;
 
-  //first check local storage for aKey
-  //if aKey, set petAToken
-  //else, get new token, udpate petAToken and localStorage
-  fetch(url, {
+  return await fetch(url, {
     method: "post",
     body: `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSKey}`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then((response) => {
+    return response
+      .json()
+      .then((data) => {
+        localStorage.setItem(
+          "petFinderAKey",
+          JSON.stringify(data.access_token)
+        );
+        let testData = data;
+        return testData;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 }
 
 //fetch pet data
 //params: type, size, gender, age, zipcode(var = inputedZipCode)
 //return: name, breed, size, gender, age, color, coat, adoption organization & location, and personality traits
-function fetchPet(params) {
+async function fetchPet(params) {
+  await checkForLocalAToken();
   let url = "";
   //testing- get by id:100
-  const testUrl = "https://api.petfinder.com/v2/animals/100";
-  if (petAToken !== "") {
-    fetch(testUrl, {
-      method: "get",
-      headers: new Headers({
-        Authorization: `Bearer ${petAToken}`,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        //give data to modal
-        console.log(data)
-        breed.textContent = "Breed: " /* + data.API breed data*/;
+  const testUrl = "https://api.petfinder.com/v2/animals?type=dog";
+  $.ajax({
+    type: "GET",
+    url: testUrl,
+    crossDomain: true,
+    dataType: "json",
+    headers: {
+      Authorization: `Bearer ${petAToken.slice(1, petAToken.length - 1)}`,
+    },
+    success: function (res) {
+      console.log(res);
+      //run randomFunction, destructure res obj
+      breed.textContent = "Breed: " /* + data.API breed data*/;
         size.textContent = "Size: " /* + data.API size data*/;
         gender.textContent = "Gender: " /* + data.API gender data*/;
         age.textContent = "Age: " /* + data.API age data*/;
@@ -151,14 +171,36 @@ function fetchPet(params) {
         coat.textContent = "Coat: " /* + data.API coat data*/;
         adoptionOrgAndLocation.textContent = "Adoption Organization: " /* + data.API organization name data + "in " + data./*API organization location data*/ ;
         personality.textContent = "Personality traits: " /* + data.API personality traits data*/;
-      })
-      .catch((err) => {
-        console.log(err);
-        getNewAToken();
-        fetchPet(params);
-      });
-  }
-  else getNewAToken();
+    },
+    error: async function (err) {
+      console.log("uh oh ", err);
+      //add error handling
+    },
+  });
+}
+
+//GET https://api.petfinder.com/v2/animals/{id}
+async function getSavedPet(id) {
+  await checkForLocalAToken();
+  // let url = `https://api.petfinder.com/v2/animals/${id}`;
+  //testing- get by id:100
+  const testUrl = "https://api.petfinder.com/v2/animals/52179899";
+  $.ajax({
+    type: "GET",
+    url: testUrl,
+    crossDomain: true,
+    dataType: "json",
+    headers: {
+      Authorization: `Bearer ${petAToken.slice(1, petAToken.length - 1)}`,
+    },
+    success: function (res) {
+      console.log(res);
+    },
+    error: async function (err) {
+      console.log("uh oh ", err);
+      //add error handling
+    },
+  });
 }
 
 //old (rate limit of 60/day) > https://jokes.one/api/joke/?ref=devresourc.es#:~:text=that%20is%20returned.-,Get%20a%20random%20Joke,-To%20get%20a
@@ -268,8 +310,3 @@ function createSavedPetBtns () {
 }
 //On page load, create saved buttons loaded from IDs in local storage
 createSavedPetBtns()
-
-
-
-
-
