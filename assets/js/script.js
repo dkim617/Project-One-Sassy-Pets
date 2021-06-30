@@ -8,41 +8,43 @@ var jokeEndPoint =
 //on page load check local storage for access token
 async function checkForLocalAToken() {
   let aKey = localStorage.getItem("petFinderAKey");
-  console.log("checking for local aToken: ", aKey);
   if (aKey === null) {
-    let newToken = await getNewAToken();
-    console.log(newToken);
-    ////WWWHHHHYYYYYY async issue > newToken undefined when setItem runs
-    localStorage.setItem(
-      "petFinderAKey",
-      JSON.stringify(newToken.access_token)
-    );
+    let newToken = await getNewAToken().then((data) => {
+      return data;
+    });
     petAToken = newToken.access_token;
-  }
+    console.log("got a new token!");
+  } else petAToken = aKey;
 }
 
 //if res.status !== 200
 //how to structure call
-//https://stackoverflow.com/questions/65514400/api-access-token-expiration-is-very-short
+//https://stackoverflow.com/questions/65514400/api-access-token-expiration-is-very-short > cors issue
+//https://stackoverflow.com/questions/47604040/how-to-get-data-returned-from-fetch-promise > return Promise issue
 async function getNewAToken() {
   let url = "https://api.petfinder.com/v2/oauth2/token";
 
-  await fetch(url, {
+  return await fetch(url, {
     method: "post",
     body: `grant_type=client_credentials&client_id=${petFinderKey}&client_secret=${petFinderSKey}`,
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("got new token: ", data);
-      localStorage.setItem("petFinderAKey", JSON.stringify(data.access_token));
-      return data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then((response) => {
+    return response
+      .json()
+      .then((data) => {
+        localStorage.setItem(
+          "petFinderAKey",
+          JSON.stringify(data.access_token)
+        );
+        let testData = data;
+        return testData;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 }
 
 //fetch pet data
@@ -52,22 +54,21 @@ async function fetchPet(params) {
   await checkForLocalAToken();
   let url = "";
   //testing- get by id:100
-  const testUrl = "https://api.petfinder.com/v2/animals/100";
+  const testUrl = "https://api.petfinder.com/v2/animals?type=dog";
   $.ajax({
     type: "GET",
     url: testUrl,
     crossDomain: true,
-    dataType: "jsonp",
+    dataType: "json",
     headers: {
-      Authorization: `Bearer ${petAToken}`,
+      Authorization: `Bearer ${petAToken.slice(1, petAToken.length - 1)}`,
     },
     success: function (res) {
       console.log(res);
     },
     error: async function (err) {
       console.log("uh oh ", err);
-      await getNewAToken();
-      await fetchPet(params);
+      //add error handling
     },
   });
 }
@@ -75,22 +76,25 @@ async function fetchPet(params) {
 //GET https://api.petfinder.com/v2/animals/{id}
 async function getSavedPet(id) {
   await checkForLocalAToken();
-  let url = `https://api.petfinder.com/v2/animals/${id}`;
+  // let url = `https://api.petfinder.com/v2/animals/${id}`;
   //testing- get by id:100
-  const testUrl = "https://api.petfinder.com/v2/animals/100";
-  await fetch(testUrl, {
-    method: "get",
-    headers: new Headers({
-      Authorization: `Bearer ${petAToken}`,
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data))
-    .catch((err) => {
-      console.log(err);
-      // getNewAToken();
-      getSavedPet(id);
-    });
+  const testUrl = "https://api.petfinder.com/v2/animals/52179899";
+  $.ajax({
+    type: "GET",
+    url: testUrl,
+    crossDomain: true,
+    dataType: "json",
+    headers: {
+      Authorization: `Bearer ${petAToken.slice(1, petAToken.length - 1)}`,
+    },
+    success: function (res) {
+      console.log(res);
+    },
+    error: async function (err) {
+      console.log("uh oh ", err);
+      //add error handling
+    },
+  });
 }
 
 //old (rate limit of 60/day) > https://jokes.one/api/joke/?ref=devresourc.es#:~:text=that%20is%20returned.-,Get%20a%20random%20Joke,-To%20get%20a
@@ -104,11 +108,11 @@ function fetchJoke() {
     .then((data) => console.log(data));
 }
 
-function testScript() {
-  fetchPet();
-  // getSavedPet();
-  // fetchJoke();
-}
+// function testScript() {
+//   fetchPet();
+//   getSavedPet();
+//   fetchJoke();
+// }
 
 //Maggies stuff
 
