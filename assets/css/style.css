@@ -1,19 +1,42 @@
-body { 
+body {
   background-color: rgb(146, 206, 206);
-  margin: 25px;
-    /*background-image: url("../css/background.jpg") */
+  /* margin: 25px; */
+  background-image: url("../css/background.jpg");
+  position: relative;
+  font-family: "Bangers", cursive;
+}
+
+nav {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+    font-size: 35px;
+    border: 10px solid #555;
 
 }
+
+h1  {
+  font-family: "Bangers", cursive;
+  margin-top: 65px;
+  text-align: center;
+  display: inline;
+  margin: 95px;
+  margin-left: 15px;
+}
+
+p{
+    font-family: "Bangers", cursive;
+    font-size: 40px;
+}
+
 
 .logo {
   width: 350px;
   height: 350px;
-  margin-bottom: 25px;
+  margin-bottom: 35px;
   border-radius: 10px 10px 10px;
   box-shadow: 5px 5px 5px rgb(163, 159, 159);
-  
-   
-
+  margin-left: 10px;
 }
 
 .btn {
@@ -31,32 +54,58 @@ body {
   font-size: 30px;
   font-weight: 400;
   box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px,
-    rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px; 
-  transition: all 0.2s; 
+    rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+  transition: all 0.2s;
   float: right;
-  
+  /* margin-right: 36px; */
+  margin-top: 23px;
 }
 
 .zip-code {
   margin: 20px;
   box-shadow: rgb(255, 198, 0) -2px -2px 0px 2px,
     rgb(246, 84, 174) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
-    float: right;
-
 }
 
 img {
   border: 10px solid #555;
   box-shadow: 5px 5px 5px rgb(163, 159, 159);
-  
+  margin-top: 75px;
+  margin-bottom: 60px;
+  margin-left: 5px;
+}
+
+.dropdown-container {
+    flex-direction: column;
+    align-items: center;
+    display: flex;
 
 }
 
-.dropdown {
-    
+.animal-type-div{
+
+    margin-right: 30px;
 }
 
-.zip-code {
-
+.containerSearch {
+  float: right;
 }
 
+.footer {
+    background-color: honeydew;
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    height: 30px;
+   text-align: center;
+}
+.fab { 
+    color: black;
+
+}
+a{
+    margin-right: 15px;
+}
+.row{
+    margin-right: 0;
+}
