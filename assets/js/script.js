@@ -48,14 +48,14 @@ var saveBtn = document.querySelector('#save-changes-btn');
 var generatedPetIDLi;
 
 var searchBtn = document.getElementById('search-btn');
-var closeModal= document.getElementsById('myModal');
+var closeModal= document.getElementById('myModal');
 
-function Close(){
-  modal.style.display= 'none'
-}
+// function Close(){
+//   modal.style.display= 'none'
+// }
 
-var close = document.getElementsByClassName('closebtn');
-closebtn.addEventListener('click', Close);
+// var closebtn = document.getElementsByClassName('closebtn');
+// closebtn.addEventListener('click', Close());
 
 
 //on page load check local storage for access token
@@ -246,10 +246,17 @@ function saveFavoritePetID () { ///FINISH
 
 //create new button attached to save pet
 function createNewPetBtn() {
+  var modal2 = document.getElementById("exampleModal");
+
   generatedPetIDLi = document.createElement('li');
   generatedPetIDLi.classList.add("generated-pet-ID-li");
   generatedPetIDBtn = document.createElement('BUTTON');
-  generatedPetIDBtn.value = uniquePetID;       
+  generatedPetIDBtn.value = uniquePetID;
+  generatedPetIDBtn.dataset.target = "#exampleModal";
+  generatedPetIDBtn.addEventListener('click', function(){
+    console.log("clicked?>");
+    modal2.style.display = "block";
+  } )      
   console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
   generatedPetIDBtn.classList.add("generated-pet-ID-btn");        
   generatedPetIDLi.appendChild(generatedPetIDBtn);
@@ -313,7 +320,7 @@ function createSavedPetBtns () {
       generatedPetIDLi.appendChild(generatedPetIDBtn);
       generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";  
       savedPetsUL.appendChild(generatedPetIDLi);
-      }
+  }
 }
 //On page load, create saved buttons loaded from IDs in local storage
 createSavedPetBtns()
