@@ -138,12 +138,14 @@ function createNewPetBtn(newId) {
   generatedPetIDLi = document.createElement("li");
   generatedPetIDLi.classList.add("generated-pet-ID-li");
   generatedPetIDBtn = document.createElement("BUTTON");
-  generatedPetIDBtn.value = newId;
-  console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
+  generatedPetIDBtn.value = newId; 
+  generatedPetIDBtn.dataset.target = "#exampleModal";
   generatedPetIDBtn.addEventListener('click', function(){
     console.log("clicked?>");
     modal2.style.display = "block";
-  } )   
+  } )  
+  console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
+  
   generatedPetIDBtn.classList.add("generated-pet-ID-btn");
   generatedPetIDLi.appendChild(generatedPetIDBtn);
   generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
@@ -178,9 +180,9 @@ function createSavedPetBtns() {
 }
 
 //modal close btn
-function Close() {
-  modal.style.display = "none";
-}
+// function Close() {
+//   modal.style.display = "none";
+// }
 
 ////API FUNKS
 
