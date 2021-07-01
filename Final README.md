@@ -14,7 +14,7 @@ Additional libraries: jQuery, Google Font
 
 ## URLs
 
-<a href="https://github.com/mlward639/Project-One-Sassy-Dogs">Link to GitHub Repository</a>
+<a href="https://github.com/mlward639/Project-One-Sassy-Pets">Link to GitHub Repository</a>
 
-<a href="https://mlward639.github.io/Project-One-Sassy-Dogs/">Link to deployed URL</a>
+<a href="https://https://mlward639.github.io/Project-One-Sassy-Pets/">Link to deployed URL</a>
 
