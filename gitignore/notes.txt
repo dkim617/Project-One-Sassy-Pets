@@ -5,3 +5,47 @@ petfinders pw: SassyPets1!
 
 API Key: ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ
 SECRET KEY: clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ
+
+Presentation: (divy up who discusses which slide)
+    Elevator pitch
+        Concept:
+            Description: Pet adoption website to allow prospective pet owners the ability to search through available pets in their area. In order to increase likelihood of adoption, funny jokes are added to each available pet to help users make a connection to the pet. Additional information about each pet is listed under their picture including name, breed, size, gender, age, color, coat, adoption organization & location, and personality traits (good with children, good with dogs, good with cats, house-trained). Search options include zip code and certain traits (animal type, size, age, gender). Searchable traits are presented in a humorous manner to select from a dropdown menu (ex: type of animal: cat, size: fat, age: old, gender: dude).
+            Motivation for development: Adoption groups are always looking for new ways to market their available pets to potential adopters. Increasingly, cute and funny pictures (like wearing silly clothes) have been utilized to increase interest in available pets by helping users make an emotional connection to the pet, especially harder to adopt animals. By adding a silly interface with humorous search criteria and silly jokes presented by each pet, we hope to have a similar effect establishing an emotional connection between the pet and the user, thereby increasing the likelihood that the user will set up a meet and greet with the animal which will increase its odds of adoption. Additionally, we thought that this website would also have entertainment quality as a fun and humorous website for animal lovers to view different pets and funny jokes. 
+            User story:
+                AS A pet lover 
+                I WANT a quick and fun way to browse available pets with attitude 
+                SO THAT I can adopt a sassy pet.
+                
+        Process:
+            Technologies used: 
+                APIs: Petfinder API and JokeAPI
+                CSS Framework: Bootstrap
+                Additional libraries: jQuery, Google Font
+            Breakdown of tasks and roles: ///fix this, not sure how to briefly delineate roles since we all did lots of stuff together
+                APIs: Kyle
+                Main page format/styling: Pia 
+                Pop up pet modal: David
+                JS: Maggie
+                HTML: all
+            Challenges: 
+                Petfinder API
+                Navigating different unfamiliar libraries
+                GitHub (merging)
+                Working on pieces rather than the whole
+            Successes: 
+                Communication
+                Trouble-shooting our problems individually and as a group 
+                Navigating our challenges together which ultimately became successes 
+
+    Demo 
+        Discuss who does what in the demo and how much detail to discuss things...
+    
+    Directions for future development: 
+        Add additional search criteria
+        Add filter criteria
+        Allow option to view a list of available pets vs one pet at a time
+        Create a version as a mobile application
+
+    Links: 
+        <a href="https://github.com/mlward639/Project-One-Sassy-Dogs">Link to GitHub Repository</a>
+        <a href="https://mlward639.github.io/Project-One-Sassy-Dogs/">Link to deployed URL</a>
