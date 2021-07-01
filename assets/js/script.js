@@ -1,5 +1,6 @@
 $(document).ready(() => {
   createSavedPetBtns();
+  getNewAToken();
 });
 
 //set variables
@@ -17,6 +18,7 @@ var ageDropdown = document.querySelector("#dropdownMenuButton3");
 var genderDropdown = document.querySelector("#dropdownMenuButton4");
 var searchBtn = document.getElementById("search-btn");
 var savedPetsUL = document.querySelector(".saved-pets");
+var listTitle=document.querySelector(".list-title");
 
 //modal variables
 var petNameTitle = $("#myModalLabel");
@@ -30,7 +32,6 @@ var breed = document.querySelector(".breed");
 var size = document.querySelector(".size");
 var gender = document.querySelector(".gender");
 var age = document.querySelector(".age");
-var color = document.querySelector(".color");
 var coat = document.querySelector(".coat");
 
 var saveBtn = document.querySelector("#save-changes-btn");
@@ -63,26 +64,23 @@ function getRandom(len) {
 //set modal elements > input: petObj
 async function setModalElements(obj) {
   function isNull(thing) {
-    return thing == null ? "???" : thing;
+    return thing == null ? "Not listed" : thing;
   }
-  let { breeds, colors, id, photos } = obj;
+  let { breeds, id, photos } = obj;
   let breedStr = `${breeds.primary}${
     breeds.secondary && "/" + breeds.secondary
   } ${breeds.mixed && "mix"}`;
-  let colorStr = `${colors.primary && colors.primary}${
-    colors.secondary && "/" + colors.secondary
-  } ${colors.tertiary && "with " + colors.tertiary}`;
 
   petNameTitle.textContent = isNull(obj.name);
   $(petNameTitle).text(obj.name);
   if (photos.length !== 0) $(searchedPetPic).attr("src", photos[0].large);
 
-  modalPetDescriptionSection.textContent = isNull(obj.description);
+  modalPetDescriptionSection.textContent = "Meet your future four-legged best friend, " + isNull(obj.name) + "! They've got a joke for you...";
+  listTitle.textContent = "More info about " + isNull(obj.name) + ":"
   breed.textContent = "Breed: " + isNull(breedStr);
   size.textContent = "Size: " + isNull(obj.size);
   gender.textContent = "Gender: " + isNull(obj.gender);
   age.textContent = "Age: " + isNull(obj.age);
-  color.textContent = "Color: " + colorStr;
   coat.textContent = "Coat: " + isNull(obj.coat);
   saveBtn.value = id;
 }
@@ -129,6 +127,7 @@ function createSavedPetBtns() {
     generatedPetIDBtn = document.createElement("BUTTON");
     generatedPetIDBtn.value = getSavedPetIDArray[i];
     generatedPetIDBtn.classList.add("generated-pet-ID-btn");
+    generatedPetIDBtn.classList.add("btn");
     generatedPetIDLi.appendChild(generatedPetIDBtn);
     generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
     savedPetsUL.appendChild(generatedPetIDLi);

@@ -32,7 +32,7 @@
     <div class="main-container">
         <div class="row containerSearch">
             <div class="container2">
-                <h2> Search for your new pet:</h2>
+                <h2> Search for your new pet: </h2>
                 <form>
                     <!-- Search zip code -->
                     <div class="zip-code-div">
@@ -105,23 +105,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="./assets/images/placeholder.jpg" alt='sassypet placeholder' class="pulled-pet-img" />
+                    <img src="./assets/images/placeholder-with-text.png" alt='sassypet placeholder' class="pulled-pet-img" />
+                    <div class="modal-pet-description"></div>
                     <p class="pet-joke"></p>
-                    <div class="modal-pet-description">
-                        Meet your future four-legged best friend
-                    </div>
                     <ul class="pulledPetDescriptors">
-                        <li class="breed"><i class="fas fa-paw"></i></li>
-                        <li class="size"><i class="fas fa-paw"></i></li>
-                        <li class="gender"><i class="fas fa-paw"></i></li>
-                        <li class="age"><i class="fas fa-paw"></i></li>
-                        <li class="color"><i class="fas fa-paw"></i></li>
-                        <li class="coat"><i class="fas fa-paw"></i></li>
+                        <li class="list-title"></li>
+                        <li class="breed dogImg"><i class="fas fa-paw"></i></li>
+                        <li class="size catImg"><i class="fas fa-paw"></i></li>
+                        <li class="gender dogImg"><i class="fas fa-paw"></i></li>
+                        <li class="age catImg"><i class="fas fa-paw"></i></li>
+                        <li class="coat dogImg"><i class="fas fa-paw"></i></li>
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" class='closebtn'>Close</button>
-                    <button type="button" class="btn btn-primary" id='save-changes-btn'>Save Pet</button>
+                    <button type="button" class="btn btn-secondary btn-format" data-dismiss="modal" class='closebtn'>Close</button>
+                    <button type="button" class="btn btn-primary btn-format" id='save-changes-btn'>Save Pet</button>
                 </div>
             </div>
         </div>
