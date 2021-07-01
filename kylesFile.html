@@ -21,195 +21,162 @@
 
 <body>
     
-  <!-- title container -->
-
- <header class="navbarContainer">
-     
-   <img src='./assets/css/SassyPets2.png'>
-      <span class="navbar-text"> 
-     Sassy Pets
-     </span>
-     <div class="headerText">"A true friend leaves paw prints on your heart."-  🐾 </div>
-
- </header>
+    <!-- title container -->
+    <header class="navbarContainer">
+        <img src='./assets/css/SassyPets2.png'>
+        <span class="navbar-text">Sassy Pets</span>
+        <div class="headerText">"A true friend leaves paw prints on your heart."-  🐾 </div>
+    </header>
     
-  
-  <!-- quote -->
-         
-    <h1>"Live life like someone left the gate open!" - <i class="fa fa-paw" aria-hidden="true"> </i> </h1>
-
-
-             
-  <!-- Search bar container -->
-    <div class="containerSearch">
-      <div class="row">
-        <div class="container2">
-            <h2> Search for your new pet:</h2>
-              <form>
-                  <!-- Search zip code -->
-                  <div class="zip-code-div">
-                      <input class="form-control zip-code" id="input-zip-code" placeholder="Enter zip code" aria-describedby="zipHelp">
-                  </div>
-                  <div class="dropdown-container">
-
-
-              <!-- Search bar container
-              <!-- Search bar container -->
-                  
+    <!-- Search bar container -->
+    <div class="main-container">
+        <div class="row containerSearch">
+            <div class="container2">
+                <h2> Search for your new pet:</h2>
+                <form>
+                    <!-- Search zip code -->
+                    <div class="zip-code-div">
+                        <input class="form-control zip-code" id="input-zip-code" placeholder="Enter zip code" aria-describedby="zipHelp">
+                    </div>
+                    <div class="dropdown-container">
                     <!-- select animal type-->
-                          <select class="dropdown btn dropdown-menu" id="dropdownMenuButton1" aria-labelledby="dropdownMenuButton">
-                              <option class="dropdown-item">Animal Type</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">Dog</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">Cat</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">Something else here</option>
-                          </select>
-                          <!-- select size -->
-                          <select class="dropdown btn dropdown-menu" id="dropdownMenuButton2" aria-labelledby="dropdownMenuButton">
-                              <option class="dropdown-item">Size</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">sizeS</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">sizeM</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">sizeL</option>
-                          </select>
-                          <!-- Select age -->
-                          <select class="dropdown btn dropdown-menu" id="dropdownMenuButton3" aria-labelledby="dropdownMenuButton">
-                              <option class="dropdown-item">Age</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">ageP</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">ageA</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">ageS</option>
-                          </select>
-                          <!-- select gender -->
-                          <select class="dropdown btn dropdown-menu" id="dropdownMenuButton4" aria-labelledby="dropdownMenuButton">
-                              <option class="dropdown-item">Gender</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">female</option>
-                              <option class="dropdown-item" value= "VALUE TO SEARCH IN PF API">male</option>
-                          </select>
-                          <button id="search-btn" class="btn btn-primary search-btn" type="button" value="Input" data-toggle="modal" data-target="#myModal">Search</button>
-                        </div>
-                          </div>
+                    <!-- make sure value= "VALUE TO SEARCH IN PF API" -->
+                        <select class="dropdown btn dropdown-menu" id="dropdownMenuButton1" aria-labelledby="dropdownMenuButton">
+                            <option class="dropdown-item">Animal Type</option>
+                            <option class="dropdown-item" value= "Dog">Dog</option>
+                            <option class="dropdown-item" value= "Cat">Cat</option>
+                        </select>
+                        <!-- select size -->
+                        <select class="dropdown btn dropdown-menu" id="dropdownMenuButton2" aria-labelledby="dropdownMenuButton">
+                            <option class="dropdown-item">Size</option>
+                            <option class="dropdown-item" value= "small">Pint-sized</option>
+                            <option class="dropdown-item" value= "medium">Not too big, not too small</option>
+                            <option class="dropdown-item" value= "large">Dog-sized</option>
+                            <option class="dropdown-item" value= "xlarge">Jabba the hut</option>
+                        </select>
+                        <!-- Select age -->
+                        <select class="dropdown btn dropdown-menu" id="dropdownMenuButton3" aria-labelledby="dropdownMenuButton">
+                            <option class="dropdown-item">Age</option>
+                            <option class="dropdown-item" value= "baby">Pupper</option>
+                            <option class="dropdown-item" value= "adult">Adulting</option>
+                            <option class="dropdown-item" value= "senior">Golden Years</option>
+                        </select>
+                        <!-- select gender -->
+                        <select class="dropdown btn dropdown-menu" id="dropdownMenuButton4" aria-labelledby="dropdownMenuButton">
+                            <option class="dropdown-item">Gender</option>
+                            <option class="dropdown-item" value= "female">Beyonce, the queen</option>
+                            <option class="dropdown-item" value= "male">Jay-Z, the king</option>
+                        </select>
+                        <button id="search-btn" class="btn btn-primary search-btn" type="button" value="Input" data-toggle="modal" data-target="#myModal">Search</button>
+                    </div>
                 </form>
-               
-
-          <!-- Buttons with saved pets to toggle between -->
-          <div class="container3">
-            <ul class= "saved-pets">
-              
-            </ul>
-          </div>
-      
-      </div>
-  
-  </div>  -->
-
-
-      <!-- img -->
-
-     
-      <img class= "puppy" src="assets/css/photo-1583511655826-05700d52f4d9.jpg"  aria-placeholder="dog selection">
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="myModalLabel">Sassy Pet Name</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="./assets/images/placeholder.jpg" alt='sassypet placeholder' class="pulled-pet-img">
-        <p class="pet-joke"></p>
-        <div class="modal-pet-description">Meet your future four-legged best friend
-          <ul class="pulledPetDescriptors">
-            <li class="breed"><i class="fas fa-paw"></i></li>
-            <li class="size"><i class="fas fa-paw"></i></li>
-            <li class="gender"><i class="fas fa-paw"></i></li>
-            <li class="age"><i class="fas fa-paw"></i></li>
-            <li class="color"><i class="fas fa-paw"></i></li>
-            <li class="coat"><i class="fas fa-paw"></i></li>
-            <li class="adoption-organization-and-location"><i class="fas fa-paw"></i></li>
-            <li class="personality-traits"><i class="fas fa-paw"></i></li>
-          </ul>
+            <!-- Buttons with saved pets to toggle between -->
+            <div class="container3">
+              <ul class= "saved-pets">
+              </ul>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" class='closebtn'>Close</button>
-        <button type="button" class="btn btn-primary" id='save-changes-btn'>Save changes</button>
-      </div>
+    </div>  
+    <!-- img -->
+    <div class = "containerImage">
+      <img class= "puppy" src="assets/css/photo-1583511655826-05700d52f4d9.jpg"  aria-placeholder="dog selection">
+      <img class= "cat" src="./assets/images/funny-cat.jpg" alt ="funny cat pic">
+      <!-- quote -->
+      <p class="quote">"Live life like someone left the gate open!" - <i class="fa fa-paw" aria-hidden="true"> </i> </p>
     </div>
-  </div>
 </div>
+    
+ 
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Sassy Pet Name</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="./assets/images/placeholder.jpg" alt='sassypet placeholder' class="pulled-pet-img">
+                    <p class="pet-joke"></p>
+                    <div class="modal-pet-description">Meet your future four-legged best friend
+                    <ul class="pulledPetDescriptors">
+                        <li class="breed"><i class="fas fa-paw"></i></li>
+                        <li class="size"><i class="fas fa-paw"></i></li>
+                        <li class="gender"><i class="fas fa-paw"></i></li>
+                        <li class="age"><i class="fas fa-paw"></i></li>
+                        <li class="color"><i class="fas fa-paw"></i></li>
+                        <li class="coat"><i class="fas fa-paw"></i></li>
+                        <li class="adoption-organization-and-location"><i class="fas fa-paw"></i></li>
+                        <li class="personality-traits"><i class="fas fa-paw"></i></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" class='closebtn'>Close</button>
+                    <button type="button" class="btn btn-primary" id='save-changes-btn'>Save Pet</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <!--Modal for each saved pet-->
-
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   </button> -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-toggle="modal" data-target="#exampleModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-toggle="modal" data-target="#exampleModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-
-
-<!-- Error (No zip) Modal -->
-<div class="modal error-modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">Error</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img src="./assets/images/embarassed-dog.jpg" alt='embarassed-dog' class="error-pet-img">
-        <p>No zip code entered. Zip code required for search.</p>
-      </div>
-      <div class="modal-footer error-footer">
-        <button type="button" class="btn btn-secondary error-close" data-dismiss="modal">Close</button>
-      </div>
+    <!-- Error (No zip) Modal -->
+    <div class="modal error-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Error</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="./assets/images/embarassed-dog.jpg" alt='embarassed-dog' class="error-pet-img">
+                    <p>No zip code entered. Zip code required for search.</p>
+                </div>
+                <div class="modal-footer error-footer">
+                    <button type="button" class="btn btn-secondary error-close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
 <!--footer-->
+    <div class="footer">
+        kyle:  <a href="https://github.com/sxtnkyl" target="_blank"><i class="fab fa-github"></i></a>
+        Maggie:   <a href="https://github.com/mlward639" target="_blank"><i class="fab fa-github"></i></a>
+        Pia:  <a href="https://github.com/Maripia12" target="_blank"><i class="fab fa-github"></i></a>
+        David:  <a href="https://github.com/dkim617"target="_blank"><i class="fab fa-github"></i></a>
+    </div>
 
-<div class="footer">
-  kyle:  <a href="https://github.com/sxtnkyl" target="_blank">
-         <i class="fab fa-github"></i>
-    </a>
-     Maggie:   <a href="https://github.com/mlward639" target="_blank">
-        <i class="fab fa-github"></i>
-    </a>
-      Pia:  <a href="https://github.com/Maripia12" target="_blank">
-        <i class="fab fa-github"></i>
-    </a>
-     David:  <a href="https://github.com/dkim617"target="_blank">
-         <i class="fab fa-github"></i>
-    </a>
-</div>
+<!-- Script sources -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script src= 'assets/js/script.js'></script>
 
 
 </body>
-
-
-
 
 </html>
