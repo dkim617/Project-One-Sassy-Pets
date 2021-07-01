@@ -131,3 +131,32 @@ a{
     margin-right: 25px;
     co
 }
+
+/* Pet Modal Styling */
+#myModal {
+  background-color: rgba(146, 146, 146, 0.89);
+}
+
+.modal-content {
+  background-color: rgb(84, 121, 143);
+  font-family: "Bangers", cursive;
+
+}
+
+.pulledPetDescriptors {
+  list-style-type: none;
+}
+
+.pulled-pet-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#MyModalLabel {
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  text-align: center;
+}

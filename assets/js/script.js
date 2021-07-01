@@ -92,7 +92,7 @@ function getOptionType(){
     console.log("OUTPUT type: " + optionTypeChoice);
   }
 
->>>>>>> 9079c5c15b0067e37a45ca551d3f72dbc33d3f86
+// >>>>>>> 9079c5c15b0067e37a45ca551d3f72dbc33d3f86
 
 function getOptionSize() {
   optionSizeChoice = sizeDropdown.options[sizeDropdown.selectedIndex].value;
