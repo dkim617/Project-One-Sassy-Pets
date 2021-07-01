@@ -57,26 +57,28 @@ function getRandom(len) {
 
 //set modal elements > input: petObj
 async function setModalElements(obj) {
+  function isNull(thing) {
+    return thing == null ? "???" : thing;
+  }
   let { breeds, colors, id, photos } = obj;
-  let breedStr = `${breeds.primary && breeds.primary}${
+  let breedStr = `${breeds.primary}${
     breeds.secondary && "/" + breeds.secondary
   } ${breeds.mixed && "mix"}`;
   let colorStr = `${colors.primary && colors.primary}${
     colors.secondary && "/" + colors.secondary
   } ${colors.tertiary && "with " + colors.tertiary}`;
 
-  console.log(obj);
-  petNameTitle.textContent = obj.name;
+  petNameTitle.textContent = isNull(obj.name);
   $(petNameTitle).text(obj.name);
   if (photos.length !== 0) $(searchedPetPic).attr("src", photos[0].large);
 
-  modalPetDescriptionSection.textContent = obj.description;
-  breed.textContent = "Breed: " + breedStr;
-  size.textContent = "Size: " + obj.size;
-  gender.textContent = "Gender: " + obj.gender;
-  age.textContent = "Age: " + obj.age;
+  modalPetDescriptionSection.textContent = isNull(obj.description);
+  breed.textContent = "Breed: " + isNull(breedStr);
+  size.textContent = "Size: " + isNull(obj.size);
+  gender.textContent = "Gender: " + isNull(obj.gender);
+  age.textContent = "Age: " + isNull(obj.age);
   color.textContent = "Color: " + colorStr;
-  coat.textContent = "Coat: " + obj.coat;
+  coat.textContent = "Coat: " + isNull(obj.coat);
   saveBtn.value = id;
 }
 
@@ -92,8 +94,10 @@ async function setModalElements(obj) {
 //create new button attached to save pet
 function createNewPetBtn(newId) {
   console.log("RUNNING CREATE NEW PET BTN FXN");
-  generatedPetIDLi = document.createElement("li");
+  let generatedPetIDLi = document.createElement("li");
   generatedPetIDLi.classList.add("generated-pet-ID-li");
+  generatedPetIDLi.setAttribute("data-toggle", "modal");
+  generatedPetIDLi.setAttribute("data-target", "#myModal");
   generatedPetIDBtn = document.createElement("BUTTON");
   generatedPetIDBtn.value = newId;
   console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
@@ -110,21 +114,19 @@ function createNewPetBtn(newId) {
 
 //create buttons with pets that were saved to local storage
 function createSavedPetBtns() {
-  console.log("making butts");
   let getSavedPetIDArray =
     JSON.parse(localStorage.getItem("savedPetIDArray")) || [];
-  console.log(getSavedPetIDArray);
   for (i = 0; i < getSavedPetIDArray.length; i++) {
     let generatedPetIDLi = document.createElement("li");
     generatedPetIDLi.classList.add("generated-pet-ID-li");
+    generatedPetIDLi.setAttribute("data-toggle", "modal");
+    generatedPetIDLi.setAttribute("data-target", "#myModal");
     generatedPetIDBtn = document.createElement("BUTTON");
     generatedPetIDBtn.value = getSavedPetIDArray[i];
-    console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
     generatedPetIDBtn.classList.add("generated-pet-ID-btn");
     generatedPetIDLi.appendChild(generatedPetIDBtn);
     generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
     savedPetsUL.appendChild(generatedPetIDLi);
-
     generatedPetIDBtn.addEventListener("click", function (event) {
       getSavedPet(event.target.value);
     });
@@ -183,11 +185,16 @@ async function fetchPet(params) {
   await checkForLocalAToken();
   //construct url from params
   let { zipcode, type, size, age, gender } = params;
-  // let url = `https://api.petfinder.com/v2/animals?&location=${zipcode}&type=${type}&size=${size}&age=${age}&gender=${gender}`;
+  let empty = false;
+  for (let val in params) {
+    console.log(params[val], params[val].length);
+    if (params[val].length == 0) empty = true;
+  }
+  let url = `https://api.petfinder.com/v2/animals?&location=${zipcode}&type=${type}&size=${size}&age=${age}&gender=${gender}`;
   const testUrl = "https://api.petfinder.com/v2/animals?type=dog";
   $.ajax({
     type: "GET",
-    url: testUrl,
+    url: empty == false ? url : testUrl,
     crossDomain: true,
     dataType: "json",
     headers: {
@@ -211,19 +218,20 @@ async function fetchPet(params) {
 //GET https://api.petfinder.com/v2/animals/{id}
 async function getSavedPet(id) {
   await checkForLocalAToken();
-  // let url = `https://api.petfinder.com/v2/animals/${id}`;
+  let url = `https://api.petfinder.com/v2/animals/${id}`;
   //testing- get by id:100
-  const testUrl = "https://api.petfinder.com/v2/animals/52179899";
+  // const testUrl = "https://api.petfinder.com/v2/animals/52179899";
   $.ajax({
     type: "GET",
-    url: testUrl,
+    url: url,
     crossDomain: true,
     dataType: "json",
     headers: {
       Authorization: `Bearer ${petAToken.slice(1, petAToken.length - 1)}`,
     },
     success: function (res) {
-      console.log(res);
+      // console.log(res);
+      setModalElements(res.animal);
     },
     error: async function (err) {
       console.log("uh oh ", err);
@@ -269,7 +277,7 @@ searchBtn.addEventListener("click", function () {
 //when click the save btn, create a button with that saved pet's ID stored so it can be accessed later
 saveBtn.addEventListener("click", function () {
   console.log("SAVING PET ID");
-  let petIDs = localStorage.getItem("savedPetIDArray") || [];
+  let petIDs = JSON.parse(localStorage.getItem("savedPetIDArray")) || [];
   petIDs.push(this.value);
   localStorage.setItem("savedPetIDArray", JSON.stringify(petIDs));
   createNewPetBtn(this.value);
