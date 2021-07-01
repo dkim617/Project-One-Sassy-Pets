@@ -13,32 +13,37 @@ body {
 .navbarContainer  { 
     border: solid #555; 
     background-color: white;
-    height: 55px;
+    height: 65px;
 }
     
 .navbar-text {
-  font-size: 20px;  
+  font-size: 20px;
+  text-decoration: double underline 5px rgb(206, 121, 25);
+
+  
+  font-size: 30px;  
 }
 
 .navbarContainer img {
     width: 40px;
     height: 40px;
-    margin-top: -9px;
+    margin-top: -23px;
 } 
     
 .headerText {
    text-align: right;
-   margin-top: -38px;
-   font-size: 20px;
+   margin-top: -50px;
+   font-size: 24px;
    margin-right: 2%;
 }
     
-h1 {
+.quote {
     font-family: "Bangers", cursive;
-    font-size: 40px;
+    font-size: 32px;
     margin: 10px;
-    margin-top: 4%;
+    margin-top: 1%;
     text-shadow: 3px 3px rgb(117, 117, 94); 
+    text-align: center;
 }
 
 /* Button styling */
@@ -66,9 +71,23 @@ h1 {
 .puppy {
   border: 10px solid #555;
   box-shadow: 5px 5px 5px rgb(163, 159, 159);
-  margin-top: 65px;
+  margin-top: 50px;
   margin-bottom: 65px;
-  margin-left: 55px;
+  margin-left: 85px;
+  position: relative;
+  height: 25%;
+  width: 25%;
+}
+
+.cat {
+  border: 10px solid #555;
+  box-shadow: 5px 5px 5px rgb(163, 159, 159);
+  margin-top: 50px;
+  margin-bottom: 65px;
+  margin-left: 65px;
+  position: relative;
+  height: 25%;
+  width: 25%;
 }
 
 /* Search area styling */
@@ -82,7 +101,6 @@ h1 {
     flex-direction: column;
     align-items: right;
     display: flex;
-    border: green 2px solid;
     width: 110%;
 }
 
@@ -100,6 +118,8 @@ h1 {
   float: right;
   width: 30%;
   margin-right: 20px; 
+  margin-top: 10px;
+  padding-right: 20px;
 }
 
 /* Pet Modal Styling */
@@ -170,7 +190,6 @@ h1 {
 .error-close {
   padding: 8px;
   margin: 0;
-  border:rgb(255, 198, 0) 2px solid;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -180,7 +199,6 @@ h1 {
 
 /* Saved Pet Buttons Styling */
 .container3 {
-    border:rgb(246, 84, 174) 2px solid;
     margin-left: 15px;
 }
 
@@ -197,10 +215,10 @@ h1 {
 }
 
 .search-btn {
-  width: 93%;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 12px;
+    width: 93%;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 12px;
 }
 
 /* footer styling */
