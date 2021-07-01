@@ -18,7 +18,11 @@ body {
 }
     
 .navbar-text {
-  font-size: 30px; 
+  font-size: 20px;
+  text-decoration: double underline 5px rgb(206, 121, 25);
+
+  
+  font-size: 30px;  
 }
 
 .navbarContainer img {
@@ -219,7 +223,7 @@ body {
 }
 
 /* footer styling */
-.footer {
+footer {
   background-color: honeydew;
   width: 100%;
   position: absolute;
