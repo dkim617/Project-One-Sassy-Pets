@@ -53,6 +53,8 @@ var saveBtn = document.querySelector("#save-changes-btn");
 var modalEl = document.getElementById("myModal");
 var closeModalEl = document.getElementsByClassName("closebtn");
 var myErrorEmptyModal = document.querySelector("#MyErrorEmptyModal");
+var blankInputEl = document.querySelector('#input-zip-code')
+var generatedPetIDBtn;
 
 //input value set to the zip code. error messages if empty
 function getInputValue() {
@@ -315,8 +317,8 @@ searchBtn.addEventListener("click", function () {
   searchParams.gender =
     genderDropdown.options[genderDropdown.selectedIndex].value;
 
-  //fetchPet(params);
-  //fetchJoke();
+  fetchPet(params);
+  fetchJoke();
   blankInputEl.value = "";
   return;
 });
