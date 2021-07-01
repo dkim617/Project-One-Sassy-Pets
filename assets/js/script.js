@@ -47,8 +47,8 @@ var saveBtn = document.querySelector('#save-changes-btn');
 
 var generatedPetIDLi;
 
-var searchBtn = document.getElementById('search-btn');
-var closeModal= document.getElementById('#myModal');
+var searchBtn = document.querySelector('#search-btn');
+var closeModal= document.querySelector('#myModal');
 
 function Close(){
   modal.style.display= 'none'
@@ -82,11 +82,9 @@ var myErrorEmptyModal = document.querySelector("#MyErrorEmptyModal");
 function getInputValue () {
   inputedZipCode = blankInputEl.value;
   console.log("inputed zip: " + inputedZipCode);
-  if (!inputedZipCode) {
-    window.alert("error")
-    myErrorEmptyModal.show(); //not working yet
-    console.log("WORKED")    
-    };  
+  if (inputedZipCode === "") {
+    $('.error-modal').modal('show');
+  };  
     blankInputEl.value = ''; 
     return;
 
