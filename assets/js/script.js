@@ -94,11 +94,20 @@ function saveFavoritePetID(id) {
 
 //create new button attached to save pet
 function createNewPetBtn(newId) {
+<<<<<<< HEAD
   let generatedPetIDLi = document.createElement("li");
+=======
+  var modal2 = document.getElementById("exampleModal");
+  generatedPetIDLi = document.createElement("li");
+>>>>>>> 93e42b10ff0d5a67ccb97e91b85c0984f59d201c
   generatedPetIDLi.classList.add("generated-pet-ID-li");
   generatedPetIDBtn = document.createElement("BUTTON");
   generatedPetIDBtn.value = newId;
   console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
+  generatedPetIDBtn.addEventListener('click', function(){
+    console.log("clicked?>");
+    modal2.style.display = "block";
+  } )   
   generatedPetIDBtn.classList.add("generated-pet-ID-btn");
   generatedPetIDLi.appendChild(generatedPetIDBtn);
   generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
@@ -282,4 +291,8 @@ saveBtn.addEventListener("click", function () {
 closeModalEl.addEventListener("click", Close);
 
 //On page load, create saved buttons loaded from IDs in local storage
+<<<<<<< HEAD
 // createSavedPetBtns();
+=======
+createSavedPetBtns();
+>>>>>>> 93e42b10ff0d5a67ccb97e91b85c0984f59d201c

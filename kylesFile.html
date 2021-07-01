@@ -21,25 +21,30 @@
 
 <body>
     
-<!-- title container -->
+  <!-- title container -->
+
  <header class="navbarContainer">
      
-     <nav class="navbar navbar-light bg-light">
-      <span class="navbar-text">
-         <img src='./assets/images/SassyPets(1).png'>    
-           Sassy Pets
-           </span>
-           <div>" A true friend leaves paw prints on your heart."-🐾 </div>
-       </nav>
-     </header>
+   <img src='./assets/css/SassyPets2.png'>
+      <span class="navbar-text"> 
+     Sassy Pets
+     </span>
+     <div class="headerText">"A true friend leaves paw prints on your heart."-  🐾 </div>
+
+ </header>
+    
+  
+  <!-- quote -->
          
-    <p>"Live life like someone left the gate open!" -</p>
+    <h1>"Live life like someone left the gate open!" - <i class="fa fa-paw" aria-hidden="true"> </i> </h1>
+
+
              
-     
+  <!-- Search bar container -->
     <div class="containerSearch">
       <div class="row">
         <div class="container2">
-            <h2>Search for your new pet: </h2>
+            <h2> Search for your new pet:</h2>
               <form>
                   <!-- Search zip code -->
                   <div class="zip-code-div">
@@ -47,6 +52,8 @@
                   </div>
                   <div class="dropdown-container">
 
+
+              <!-- Search bar container
               <!-- Search bar container -->
                   
                     <!-- select animal type-->
@@ -75,26 +82,28 @@
                               <option class="dropdown-item" value= "female">female</option>
                               <option class="dropdown-item" value= "male">male</option>
                           </select>
-                          <button id="search-btn" class="btn btn-primary search-btn" type="button" value="Input">Search</button>
+                          <button id="search-btn" class="btn btn-primary search-btn" type="button" value="Input" data-toggle="modal" data-target="#myModal">Search</button>
                         </div>
                           </div>
                 </form>
                
+
           <!-- Buttons with saved pets to toggle between -->
           <div class="container3">
             <ul class= "saved-pets">
+              
             </ul>
           </div>
       
       </div>
   
-  </div> 
+  </div>  -->
 
 
-<!-- img -->
+      <!-- img -->
 
-
-<img src="assets/css/photo-1583511655826-05700d52f4d9.jpg"  aria-placeholder="dog selection">
+     
+      <img class= "puppy" src="assets/css/photo-1583511655826-05700d52f4d9.jpg"  aria-placeholder="dog selection">
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -124,12 +133,34 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" class='closebtn'>Close</button>
-        <button type="button" class="btn btn-primary" id= 'save-changes-btn'>Save changes</button>
+        <button type="button" class="btn btn-primary" id='save-changes-btn'>Save changes</button>
       </div>
     </div>
   </div>
 </div>
 
+<!--Modal for each saved pet-->
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  </button> -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-toggle="modal" data-target="#exampleModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
