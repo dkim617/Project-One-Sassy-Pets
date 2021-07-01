@@ -1,8 +1,8 @@
 //set variables
-const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
-const petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
-const petAToken = "";
-const jokeEndPoint =
+var petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
+var petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
+var petAToken = "";
+var jokeEndPoint =
   "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit";
 
 //elements with query params
@@ -12,23 +12,7 @@ var sizeDropdown = document.querySelector("#dropdownMenuButton2");
 var ageDropdown = document.querySelector("#dropdownMenuButton3");
 var genderDropdown = document.querySelector("#dropdownMenuButton4");
 var searchBtn = document.getElementById("search-btn");
-
-//extra code to store these globally- just pass into eventlistener
-// var optionTypeChoice;
-// var optionSizeChoice;
-// var optionAgeChoice;
-// var optionGenderChoice;
-
-// var uniquePetID; removed by passing newId
-var generatedPetIDLi;
-
-// var savedPetIDArray = [];
-// var getSavedPetIDArray = [];
 var savedPetsUL = document.querySelector(".saved-pets");
-
-////unused vars
-// var petName; //= data._______;
-// var petPic; //= data.______;
 
 //modal variables
 var petNameTitle = document.querySelector("#MyModalLabel");
@@ -61,32 +45,8 @@ function getInputValue() {
   if (inputedZipCode === "") {
     $(".error-modal").modal("show");
   }
-  blankInputEl.value = "";
   return inputedZipCode;
 }
-
-////moved functionality into event listener
-//get value of drop down buttons
-// function getOptionType() {
-//   optionTypeChoice = typeDropdown.options[typeDropdown.selectedIndex].value;
-//   console.log("OUTPUT type: " + optionTypeChoice);
-// }
-
-// function getOptionSize() {
-//   optionSizeChoice = sizeDropdown.options[sizeDropdown.selectedIndex].value;
-//   console.log("OUTPUT size: " + optionSizeChoice);
-// }
-
-// function getOptionAge() {
-//   optionAgeChoice = ageDropdown.options[ageDropdown.selectedIndex].value;
-//   console.log("OUTPUT age: " + optionAgeChoice);
-// }
-
-// function getOptionGender() {
-//   optionGenderChoice =
-//     genderDropdown.options[genderDropdown.selectedIndex].value;
-//   console.log("OUTPUT F/M: " + optionGenderChoice);
-// }
 
 ////pass arr length as arg- remove arr logic and need for var name issues
 function getRandom(len) {
@@ -134,7 +94,7 @@ function saveFavoritePetID(id) {
 
 //create new button attached to save pet
 function createNewPetBtn(newId) {
-  generatedPetIDLi = document.createElement("li");
+  let generatedPetIDLi = document.createElement("li");
   generatedPetIDLi.classList.add("generated-pet-ID-li");
   generatedPetIDBtn = document.createElement("BUTTON");
   generatedPetIDBtn.value = newId;
@@ -143,16 +103,15 @@ function createNewPetBtn(newId) {
   generatedPetIDLi.appendChild(generatedPetIDBtn);
   generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
   savedPetsUL.appendChild(generatedPetIDLi);
-}
 
-////moved to createSavedPetBtns
-//get saved IDs from local storage
-// function getSavedPetIDs() {
-//   getSavedPetIDArray =
-//     JSON.parse(localStorage.getItem("savedPetIDArray")) || [];
-//   console.log("get pet ID ARRAY: " + getSavedPetIDArray);
-//   createSavedPetBtns();
-// }
+  generatedPetIDBtn.addEventListener("click", function (event) {
+    //set modal values to blank
+    petNameTitle.textContent = "";
+    searchedPetPic = "";
+    listPetDescriptors = "";
+    getSavedPet(id);
+  });
+}
 
 //create buttons with pets that were saved to local storage
 function createSavedPetBtns() {
@@ -160,7 +119,7 @@ function createSavedPetBtns() {
     JSON.parse(localStorage.getItem("savedPetIDArray")) || [];
 
   for (i = 0; i < getSavedPetIDArray.length; i++) {
-    generatedPetIDLi = document.createElement("li");
+    let generatedPetIDLi = document.createElement("li");
     generatedPetIDLi.classList.add("generated-pet-ID-li");
     generatedPetIDBtn = document.createElement("BUTTON");
     generatedPetIDBtn.value = getSavedPetIDArray[i];
@@ -169,6 +128,14 @@ function createSavedPetBtns() {
     generatedPetIDLi.appendChild(generatedPetIDBtn);
     generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
     savedPetsUL.appendChild(generatedPetIDLi);
+
+    generatedPetIDBtn.addEventListener("click", function (event) {
+      //set modal values to blank
+      petNameTitle.textContent = "";
+      searchedPetPic = "";
+      listPetDescriptors = "";
+      getSavedPet(id);
+    });
   }
 }
 
@@ -223,32 +190,21 @@ async function getNewAToken() {
 async function fetchPet(params) {
   await checkForLocalAToken();
   //construct url from params
-  let url = "";
-  //testing- get by id:100
-  const testUrl = "https://api.petfinder.com/v2/animals?type=dog";
+  let { zipcode, type, size, age, gender } = params;
+  let url = `https://api.petfinder.com/v2/animals?&location=${zipcode}&type=${type}&size=${size}&age=${age}&gender=${gender}`;
+  // const testUrl = "https://api.petfinder.com/v2/animals?type=dog";
   $.ajax({
     type: "GET",
-    url: testUrl,
+    url: url,
     crossDomain: true,
     dataType: "json",
     headers: {
       Authorization: `Bearer ${petAToken.slice(1, petAToken.length - 1)}`,
     },
     success: function (res) {
-      console.log(res);
       //run randomFunction, destructure res obj
-      let randIndex = getRandom(res.length);
-      setModalElements(res[randIndex]);
-      // breed.textContent = "Breed: " /* + res.API breed data*/;
-      // size.textContent = "Size: " /* + res.API size data*/;
-      // gender.textContent = "Gender: " /* + res.API gender data*/;
-      // age.textContent = "Age: " /* + res.API age data*/;
-      // color.textContent = "Color: " /* + res.API color data*/;
-      // coat.textContent = "Coat: " /* + res.API coat data*/;
-      // adoptionOrgAndLocation.textContent =
-      //   "Adoption Organization: " /* + res.API organization name data + "in " + res./*API organization location data*/;
-      // personality.textContent =
-      //   "Personality traits: " /* + res.API personality traits data*/;
+      let randIndex = getRandom(res.animals.length);
+      setModalElements(res.animals[randIndex]);
     },
     error: async function (err) {
       console.log("uh oh ", err);
@@ -288,14 +244,12 @@ function fetchJoke() {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      petJoke.textContent /* =  data.pet joke from API*/;
+      petJoke.textContent = data.setup + "- " + data.delivery;
     });
 }
 
-//run these functions when clicking the search button
+//pass input values to API handlers
 searchBtn.addEventListener("click", function () {
-  ////refactor below functions to make params arg for fetchPet()
   let searchParams = {
     zipcode: "",
     type: "",
@@ -305,19 +259,14 @@ searchBtn.addEventListener("click", function () {
   };
   let zip = getInputValue();
   searchParams.zipcode = zip;
-  // getOptionType();
   searchParams.type = typeDropdown.options[typeDropdown.selectedIndex].value;
-  // getOptionSize();
   searchParams.size = sizeDropdown.options[sizeDropdown.selectedIndex].value;
-  // getOptionAge();
   searchParams.age = ageDropdown.options[ageDropdown.selectedIndex].value;
-  // getOptionGender();
   searchParams.gender =
     genderDropdown.options[genderDropdown.selectedIndex].value;
 
-  //fetchPet(params);
-  //fetchJoke();
-  blankInputEl.value = "";
+  fetchPet(searchParams);
+  fetchJoke();
   return;
 });
 
@@ -330,22 +279,7 @@ saveBtn.addEventListener("click", function () {
   createNewPetBtn(this.value);
 });
 
-//add event listener to the saved buttons
-// function clickSavedPetIDBtn() {
-generatedPetIDBtn.addEventListener("click", function (event) {
-  //set modal values to blank
-  petNameTitle.textContent = "";
-  searchedPetPic = "";
-  listPetDescriptors = "";
-  //UNIQUE-PET-ID ***** = '';
-  //UNIQUE-PET-ID ***** = event.target.value;
-  //console.log("SAVED PET", UNIQUE-PET-ID *****)
-  getSavedPet(id);
-  //console.log("clickSavedPet fxn working");
-});
-// }
-
 closeModalEl.addEventListener("click", Close);
 
 //On page load, create saved buttons loaded from IDs in local storage
-createSavedPetBtns();
+// createSavedPetBtns();
