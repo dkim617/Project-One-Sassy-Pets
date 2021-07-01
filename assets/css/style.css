@@ -42,7 +42,7 @@ body {
     font-family: "Bangers", cursive;
     font-size: 32px;
     margin: 10px;
-    margin-top: 1%;
+    margin-top: -30px;
     text-shadow: 3px 3px rgb(117, 117, 94); 
     text-align: center;
 }
@@ -226,8 +226,8 @@ body {
 footer {
   background-color: honeydew;
   width: 100%;
-  position: absolute;
-  bottom: -10%;
+  position: fixed;
+  bottom: 0px;
   height: 48px;
   text-align: center;    
 }
@@ -246,3 +246,24 @@ a {
   margin-right: 25px;
 }
 
+@media (max-width: 575.98px)
+{
+  .navbar-text { display: flex; flex-direction: column; padding-top: 0px;}
+  
+  .headerText { display: flex; flex-direction: column; padding-top: 50px;}
+  
+  h2 { flex-direction: column; padding-top: 50px;}
+  
+ .puppy, .cat {align-items: center; flex-direction: column;}
+ 
+ .quote {padding-bottom: 30px;}
+
+.container3 {display: flex; flex-wrap: wrap; padding:10px; align-items:stretch; }
+ 
+
+.main-container, .dropdown-container {display: flex; flex-direction: column; align-items: center;
+
+  }
+
+  .containerSearch {width:40%;}
+}
