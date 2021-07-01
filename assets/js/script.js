@@ -56,12 +56,19 @@ var myErrorEmptyModal = document.querySelector("#MyErrorEmptyModal");
 var blankInputEl = document.querySelector('#input-zip-code')
 var generatedPetIDBtn;
 
+var emptyZip=false;
+
+
 //input value set to the zip code. error messages if empty
 function getInputValue() {
   let inputedZipCode = zipcodeInputEl.value;
   console.log("inputed zip: " + inputedZipCode);
   if (inputedZipCode === "") {
     $(".error-modal").modal("show");
+    emptyZip = true;
+  }
+  else {
+    emptyZip = false;
   }
   blankInputEl.value = "";
   return inputedZipCode;
@@ -308,6 +315,12 @@ searchBtn.addEventListener("click", function () {
     gender: "",
   };
   let zip = getInputValue();
+  if (emptyZip = true) {
+    console.log("EMPTY ZIP TRUE" + emptyZip)
+    return;
+  }
+  else {
+    console.log("EMPTY ZIP FALSE" + emptyZip)
   searchParams.zipcode = zip;
   // getOptionType();
   searchParams.type = typeDropdown.options[typeDropdown.selectedIndex].value;
@@ -322,7 +335,7 @@ searchBtn.addEventListener("click", function () {
   fetchPet(params);
   fetchJoke();
   blankInputEl.value = "";
-  return;
+  return}
 });
 
 //when click the save btn, create a button with that saved pet's ID stored so it can be accessed later
