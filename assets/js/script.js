@@ -1,9 +1,9 @@
 //set variables
-/*const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
+const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
 const petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
 const petAToken = "";
 const jokeEndPoint =
-  "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit"; */
+  "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit"; 
 
 //search variables
 var inputedZipCode = ''  
@@ -48,14 +48,14 @@ var saveBtn = document.querySelector('#save-changes-btn');
 var generatedPetIDLi;
 
 var searchBtn = document.getElementById('search-btn');
-var closeModal= document.getElementsById('myModal');
+var closeModal= document.getElementById('#myModal');
 
 function Close(){
   modal.style.display= 'none'
 }
 
-var close = document.getElementsByClassName('closebtn');
-closebtn.addEventListener('click', Close);
+var close = document.getElementsByClassName('.closebtn');
+//close.addEventListener('click', Close);
 
 
 //on page load check local storage for access token
@@ -70,8 +70,8 @@ searchBtn.addEventListener('click', function (){
   getOptionSize();
   getOptionAge();
   getOptionGender();
-  //fetchPet(params);
-  //fetchJoke();
+  fetchPet(params);
+  fetchJoke();
   blankInputEl.value = ''; 
   return;
 })
@@ -84,7 +84,7 @@ function getInputValue () {
   console.log("inputed zip: " + inputedZipCode);
   if (!inputedZipCode) {
     window.alert("error")
-    myErrorEmptyModal.show();
+    myErrorEmptyModal.show(); //not working yet
     console.log("WORKED")    
     };  
     blankInputEl.value = ''; 
@@ -165,7 +165,7 @@ async function getNewAToken() {
 }
 
 //fetch pet data
-//params: type, size, gender, age, zipcode(var = inputedZipCode)
+//params: type (var=optionTypeChoice), size (var=optionSizeChoice), gender (var=optionGenderChoice), age (var=optionAgeChoice), zipcode(var = inputedZipCode)
 //return: name, breed, size, gender, age, color, coat, adoption organization & location, and personality traits
 async function fetchPet(params) {
   await checkForLocalAToken();
