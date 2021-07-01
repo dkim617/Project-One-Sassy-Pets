@@ -136,11 +136,16 @@ function saveFavoritePetID(id) {
 
 //create new button attached to save pet
 function createNewPetBtn(newId) {
+  var modal2 = document.getElementById("exampleModal");
   generatedPetIDLi = document.createElement("li");
   generatedPetIDLi.classList.add("generated-pet-ID-li");
   generatedPetIDBtn = document.createElement("BUTTON");
   generatedPetIDBtn.value = newId;
   console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
+  generatedPetIDBtn.addEventListener('click', function(){
+    console.log("clicked?>");
+    modal2.style.display = "block";
+  } )   
   generatedPetIDBtn.classList.add("generated-pet-ID-btn");
   generatedPetIDLi.appendChild(generatedPetIDBtn);
   generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
