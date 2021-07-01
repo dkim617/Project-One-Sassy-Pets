@@ -40,11 +40,16 @@ var myErrorEmptyModal = document.querySelector("#MyErrorEmptyModal");
 var blankInputEl = document.querySelector("#input-zip-code");
 var generatedPetIDBtn;
 
+var emptyZip=false;
+
+
 //input value set to the zip code. error messages if empty
 function getInputValue() {
   let inputedZipCode = zipcodeInputEl.value;
   if (inputedZipCode === "") {
     $(".error-modal").modal("show");
+    emptyZip = true;
+    return;
   }
   return inputedZipCode;
 }

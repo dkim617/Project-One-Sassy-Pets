@@ -41,7 +41,7 @@ body {
     font-family: "Bangers", cursive;
     font-size: 32px;
     margin: 10px;
-    margin-top: 1%;
+    margin-top: -30px;
     text-shadow: 3px 3px rgb(117, 117, 94); 
     text-align: center;
 }
@@ -222,11 +222,11 @@ body {
 }
 
 /* footer styling */
-.footer {
+footer {
   background-color: honeydew;
   width: 100%;
-  position: absolute;
-  bottom: -10%;
+  position: fixed;
+  bottom: 0px;
   height: 48px;
   text-align: center;    
 }
