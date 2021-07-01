@@ -50,7 +50,7 @@ h1{
 
     font-family: "Bangers", cursive;
     font-size: 40px;
-    margin: 10px;
+    margin: 30px;
     margin-top: 4%;
     text-shadow: 3px 3px rgb(117, 117, 94);
     
@@ -91,7 +91,7 @@ h1{
   box-shadow: 5px 5px 5px rgb(163, 159, 159);
   margin-top: 65px;
   margin-bottom: 65px;
-  margin-left: 55px;
+  margin-left: 95px;
    
  
    
@@ -113,6 +113,7 @@ h1{
 
 .containerSearch {
   float: right;
+  margin-right: 40px;
   
 }
 
