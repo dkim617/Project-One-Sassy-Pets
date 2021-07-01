@@ -1,3 +1,7 @@
+$(document).ready(() => {
+  createSavedPetBtns();
+});
+
 //set variables
 var petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
 var petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
@@ -15,23 +19,19 @@ var searchBtn = document.getElementById("search-btn");
 var savedPetsUL = document.querySelector(".saved-pets");
 
 //modal variables
-var petNameTitle = document.querySelector("#MyModalLabel");
-var searchedPetPic = document.querySelector(".pulled-pet-img");
+var petNameTitle = $("#myModalLabel");
+var searchedPetPic = $(".pulled-pet-img");
 var petJoke = document.querySelector(".pet-joke");
 var modalPetDescriptionSection = document.querySelector(
-  "#modal-pet-description"
+  ".modal-pet-description"
 );
-var listPetDescriptors = document.querySelector("#pulledPetDescriptors");
+var listPetDescriptors = document.querySelector(".pulledPetDescriptors");
 var breed = document.querySelector(".breed");
 var size = document.querySelector(".size");
 var gender = document.querySelector(".gender");
-var age = document.querySelector(".color");
+var age = document.querySelector(".age");
 var color = document.querySelector(".color");
 var coat = document.querySelector(".coat");
-var adoptionOrgAndLocation = document.querySelector(
-  ".adoption-organization-and-location"
-);
-var personality = document.querySelector(".personality-traits");
 
 var saveBtn = document.querySelector("#save-changes-btn");
 var modalEl = document.getElementById("myModal");
@@ -43,7 +43,6 @@ var generatedPetIDBtn;
 //input value set to the zip code. error messages if empty
 function getInputValue() {
   let inputedZipCode = zipcodeInputEl.value;
-  console.log("inputed zip: " + inputedZipCode);
   if (inputedZipCode === "") {
     $(".error-modal").modal("show");
   }
@@ -57,7 +56,7 @@ function getRandom(len) {
 }
 
 //set modal elements > input: petObj
-function setModalElements(obj) {
+async function setModalElements(obj) {
   let { breeds, colors, id, photos } = obj;
   let breedStr = `${breeds.primary && breeds.primary}${
     breeds.secondary && "/" + breeds.secondary
@@ -65,34 +64,30 @@ function setModalElements(obj) {
   let colorStr = `${colors.primary && colors.primary}${
     colors.secondary && "/" + colors.secondary
   } ${colors.tertiary && "with " + colors.tertiary}`;
-  let photo = photos[0];
-  let joke = fetchJoke();
 
-  petNameTitle = obj.name;
-  searchedPetPic = photo;
-  petJoke = joke;
-  modalPetDescriptionSection = obj.description;
-  listPetDescriptors = ""; //what data prop is this?
-  breed = breedStr;
-  size = obj.size;
-  gender = obj.gender;
-  age = obj.age;
-  color = colorStr;
-  coat = obj.coat;
-  adoptionOrgAndLocation = ""; //maybe skip, have to make fetch
-  personality = ""; //no data
-  // uniquePetID = id;
+  console.log(obj);
+  petNameTitle.textContent = obj.name;
+  $(petNameTitle).text(obj.name);
+  if (photos.length !== 0) $(searchedPetPic).attr("src", photos[0].large);
+
+  modalPetDescriptionSection.textContent = obj.description;
+  breed.textContent = "Breed: " + breedStr;
+  size.textContent = "Size: " + obj.size;
+  gender.textContent = "Gender: " + obj.gender;
+  age.textContent = "Age: " + obj.age;
+  color.textContent = "Color: " + colorStr;
+  coat.textContent = "Coat: " + obj.coat;
   saveBtn.value = id;
 }
 
-//save unique pet ID to local storage
-function saveFavoritePetID(id) {
-  ///FINISH
-  //add new pet ID to the array
-  // savedPetIDArray.push(uniquePetID);
-  // //may or may not need: if there is already values in the array, then concat the saved array to this new array (consisting of any ids searched while the browser is open??? not sure if need this)
-  // localStorage.setItem("savedPetIDArray", JSON.stringify(savedPetIDArray));
-}
+// //save unique pet ID to local storage
+// function saveFavoritePetID(id) {
+//   ///FINISH
+//   //add new pet ID to the array
+//   // savedPetIDArray.push(uniquePetID);
+//   // //may or may not need: if there is already values in the array, then concat the saved array to this new array (consisting of any ids searched while the browser is open??? not sure if need this)
+//   // localStorage.setItem("savedPetIDArray", JSON.stringify(savedPetIDArray));
+// }
 
 //create new button attached to save pet
 function createNewPetBtn(newId) {
@@ -109,19 +104,16 @@ function createNewPetBtn(newId) {
   savedPetsUL.appendChild(generatedPetIDLi);
 
   generatedPetIDBtn.addEventListener("click", function (event) {
-    //set modal values to blank
-    petNameTitle.textContent = "";
-    searchedPetPic = "";
-    listPetDescriptors = "";
-    getSavedPet(id);
+    getSavedPet(event.target.value);
   });
 }
 
 //create buttons with pets that were saved to local storage
 function createSavedPetBtns() {
+  console.log("making butts");
   let getSavedPetIDArray =
     JSON.parse(localStorage.getItem("savedPetIDArray")) || [];
-
+  console.log(getSavedPetIDArray);
   for (i = 0; i < getSavedPetIDArray.length; i++) {
     let generatedPetIDLi = document.createElement("li");
     generatedPetIDLi.classList.add("generated-pet-ID-li");
@@ -134,11 +126,7 @@ function createSavedPetBtns() {
     savedPetsUL.appendChild(generatedPetIDLi);
 
     generatedPetIDBtn.addEventListener("click", function (event) {
-      //set modal values to blank
-      petNameTitle.textContent = "";
-      searchedPetPic = "";
-      listPetDescriptors = "";
-      getSavedPet(id);
+      getSavedPet(event.target.value);
     });
   }
 }
@@ -195,11 +183,11 @@ async function fetchPet(params) {
   await checkForLocalAToken();
   //construct url from params
   let { zipcode, type, size, age, gender } = params;
-  let url = `https://api.petfinder.com/v2/animals?&location=${zipcode}&type=${type}&size=${size}&age=${age}&gender=${gender}`;
-  // const testUrl = "https://api.petfinder.com/v2/animals?type=dog";
+  // let url = `https://api.petfinder.com/v2/animals?&location=${zipcode}&type=${type}&size=${size}&age=${age}&gender=${gender}`;
+  const testUrl = "https://api.petfinder.com/v2/animals?type=dog";
   $.ajax({
     type: "GET",
-    url: url,
+    url: testUrl,
     crossDomain: true,
     dataType: "json",
     headers: {
@@ -208,11 +196,14 @@ async function fetchPet(params) {
     success: function (res) {
       //run randomFunction, destructure res obj
       let randIndex = getRandom(res.animals.length);
+      console.log(res.animals[randIndex]);
       setModalElements(res.animals[randIndex]);
+      fetchJoke();
     },
     error: async function (err) {
       console.log("uh oh ", err);
       //add error handling
+      getNewAToken();
     },
   });
 }
@@ -248,6 +239,7 @@ function fetchJoke() {
   )
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       petJoke.textContent = data.setup + "- " + data.delivery;
     });
 }
@@ -269,22 +261,18 @@ searchBtn.addEventListener("click", function () {
   searchParams.gender =
     genderDropdown.options[genderDropdown.selectedIndex].value;
 
-  fetchPet(params);
-  fetchJoke();
+  fetchPet(searchParams);
   blankInputEl.value = "";
-  return;
+  // return;
 });
 
 //when click the save btn, create a button with that saved pet's ID stored so it can be accessed later
 saveBtn.addEventListener("click", function () {
   console.log("SAVING PET ID");
-  let petIDs = localStorage.getItem("savedPetIDArray");
-  //petIDs.push(this.value);
+  let petIDs = localStorage.getItem("savedPetIDArray") || [];
+  petIDs.push(this.value);
   localStorage.setItem("savedPetIDArray", JSON.stringify(petIDs));
   createNewPetBtn(this.value);
 });
 
 closeModalEl.addEventListener("click", Close);
-
-//On page load, create saved buttons loaded from IDs in local storage
-// createSavedPetBtns();
