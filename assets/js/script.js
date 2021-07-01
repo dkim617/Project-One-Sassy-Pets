@@ -19,11 +19,11 @@ var searchBtn = document.getElementById("search-btn");
 // var optionAgeChoice;
 // var optionGenderChoice;
 
-var uniquePetID;
+// var uniquePetID; removed by passing newId
 var generatedPetIDLi;
 
 // var savedPetIDArray = [];
-var getSavedPetIDArray = [];
+// var getSavedPetIDArray = [];
 var savedPetsUL = document.querySelector(".saved-pets");
 
 ////unused vars
@@ -104,7 +104,7 @@ function setModalElements(obj) {
   let breedStr = `${breeds.primary && breeds.primary}${
     breeds.secondary && "/" + breeds.secondary
   } ${breeds.mixed && "mix"}`;
-  let color = `${colors.primary && colors.primary}${
+  let colorStr = `${colors.primary && colors.primary}${
     colors.secondary && "/" + colors.secondary
   } ${colors.tertiary && "with " + colors.tertiary}`;
   let photo = photos[0];
@@ -119,11 +119,11 @@ function setModalElements(obj) {
   size = obj.size;
   gender = obj.gender;
   age = obj.age;
-  color = obj.color;
+  color = colorStr;
   coat = obj.coat;
   adoptionOrgAndLocation = ""; //maybe skip, have to make fetch
   personality = ""; //no data
-  uniquePetID = id;
+  // uniquePetID = id;
   saveBtn.value = id;
 }
 
@@ -134,18 +134,14 @@ function saveFavoritePetID(id) {
   // savedPetIDArray.push(uniquePetID);
   // //may or may not need: if there is already values in the array, then concat the saved array to this new array (consisting of any ids searched while the browser is open??? not sure if need this)
   // localStorage.setItem("savedPetIDArray", JSON.stringify(savedPetIDArray));
-  ////TODO:
-  //var = localStorage.getItem
-  //var.push
-  //localStorage.setItem
 }
 
 //create new button attached to save pet
-function createNewPetBtn() {
+function createNewPetBtn(newId) {
   generatedPetIDLi = document.createElement("li");
   generatedPetIDLi.classList.add("generated-pet-ID-li");
   generatedPetIDBtn = document.createElement("BUTTON");
-  generatedPetIDBtn.value = uniquePetID;
+  generatedPetIDBtn.value = newId;
   console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
   generatedPetIDBtn.classList.add("generated-pet-ID-btn");
   generatedPetIDLi.appendChild(generatedPetIDBtn);
@@ -153,31 +149,20 @@ function createNewPetBtn() {
   savedPetsUL.appendChild(generatedPetIDLi);
 }
 
-//get saved ID from local storage
-function getSavedPetID() {
-  getSavedPetIDArray =
-    JSON.parse(localStorage.getItem("savedPetIDArray")) || [];
-  console.log("get pet ID ARRAY: " + getSavedPetIDArray);
-  createSavedPetBtns();
-}
-
-//add event listener to the saved buttons
-function clickSavedPetIDBtn() {
-  generatedPetIDBtn.addEventListener("click", function (event) {
-    //set modal values to blank
-    petNameTitle.textContent = "";
-    searchedPetPic = "";
-    listPetDescriptors = "";
-    //UNIQUE-PET-ID ***** = '';
-    //UNIQUE-PET-ID ***** = event.target.value;
-    //console.log("SAVED PET", UNIQUE-PET-ID *****)
-    getSavedPet(id);
-    //console.log("clickSavedPet fxn working");
-  });
-}
+////moved to createSavedPetBtns
+//get saved IDs from local storage
+// function getSavedPetIDs() {
+//   getSavedPetIDArray =
+//     JSON.parse(localStorage.getItem("savedPetIDArray")) || [];
+//   console.log("get pet ID ARRAY: " + getSavedPetIDArray);
+//   createSavedPetBtns();
+// }
 
 //create buttons with pets that were saved to local storage
 function createSavedPetBtns() {
+  let getSavedPetIDArray =
+    JSON.parse(localStorage.getItem("savedPetIDArray")) || [];
+
   for (i = 0; i < getSavedPetIDArray.length; i++) {
     generatedPetIDLi = document.createElement("li");
     generatedPetIDLi.classList.add("generated-pet-ID-li");
@@ -343,9 +328,26 @@ searchBtn.addEventListener("click", function () {
 //when click the save btn, create a button with that saved pet's ID stored so it can be accessed later
 saveBtn.addEventListener("click", function () {
   console.log("SAVING PET ID");
-  saveFavoritePetID(this.value);
-  createNewPetBtn();
+  let petIDs = localStorage.getItem("savedPetIDArray");
+  petIDs.push(this.value);
+  localStorage.setItem("savedPetIDArray", JSON.stringify(petIDs));
+  createNewPetBtn(this.value);
 });
+
+//add event listener to the saved buttons
+// function clickSavedPetIDBtn() {
+generatedPetIDBtn.addEventListener("click", function (event) {
+  //set modal values to blank
+  petNameTitle.textContent = "";
+  searchedPetPic = "";
+  listPetDescriptors = "";
+  //UNIQUE-PET-ID ***** = '';
+  //UNIQUE-PET-ID ***** = event.target.value;
+  //console.log("SAVED PET", UNIQUE-PET-ID *****)
+  getSavedPet(id);
+  //console.log("clickSavedPet fxn working");
+});
+// }
 
 closeModalEl.addEventListener("click", Close);
 
