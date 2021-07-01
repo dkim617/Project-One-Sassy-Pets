@@ -1,8 +1,8 @@
 //set variables
-const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
-const petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
-const petAToken = "";
-const jokeEndPoint =
+var petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
+var petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
+var petAToken = "";
+var jokeEndPoint =
   "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit";
 
 //elements with query params
@@ -136,17 +136,14 @@ function saveFavoritePetID(id) {
 
 //create new button attached to save pet
 function createNewPetBtn(newId) {
-  var modal2 = document.getElementById("exampleModal");
+  console.log("RUNNING CREATE NEW PET BTN FXN")
   generatedPetIDLi = document.createElement("li");
   generatedPetIDLi.classList.add("generated-pet-ID-li");
   generatedPetIDBtn = document.createElement("BUTTON");
   generatedPetIDBtn.value = newId;
   console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
-  generatedPetIDBtn.addEventListener('click', function(){
-    console.log("clicked?>");
-    modal2.style.display = "block";
-  } )   
   generatedPetIDBtn.classList.add("generated-pet-ID-btn");
+  generatedPetIDBtn.classList.add("btn");
   generatedPetIDLi.appendChild(generatedPetIDBtn);
   generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
   savedPetsUL.appendChild(generatedPetIDLi);
@@ -332,7 +329,7 @@ searchBtn.addEventListener("click", function () {
 saveBtn.addEventListener("click", function () {
   console.log("SAVING PET ID");
   let petIDs = localStorage.getItem("savedPetIDArray");
-  petIDs.push(this.value);
+  //petIDs.push(this.value);
   localStorage.setItem("savedPetIDArray", JSON.stringify(petIDs));
   createNewPetBtn(this.value);
 });
