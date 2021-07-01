@@ -17,6 +17,10 @@ body {
 }
     
 .navbar-text {
+  font-size: 20px;
+  text-decoration: double underline 5px rgb(206, 121, 25);
+
+  
   font-size: 30px;  
 }
 
