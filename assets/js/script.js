@@ -1,9 +1,9 @@
-//API data variables
-/*const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
+//set variables
+const petFinderKey = "ndSGC9feqyCGwbQbKyyOrofwuMowCuUmKkOZhGLvrN4L6uk3dZ";
 const petFinderSKey = "clSh2tlyLDixT4HzOsZFGzfx3JrLW5AChIVBfWXJ";
 const petAToken = "";
 const jokeEndPoint =
-  "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit"; */
+  "https://v2.jokeapi.dev/joke/Any?blacklistFlags=religious,political,sexist,explicit";
 
 //elements with query params
 var zipcodeInputEl = document.querySelector("#input-zip-code");
@@ -58,14 +58,10 @@ var myErrorEmptyModal = document.querySelector("#MyErrorEmptyModal");
 function getInputValue() {
   let inputedZipCode = zipcodeInputEl.value;
   console.log("inputed zip: " + inputedZipCode);
-  if (!inputedZipCode) {
-    window.alert("error");
-    myErrorEmptyModal.show();
-    console.log("WORKED");
+  if (inputedZipCode === "") {
+    $(".error-modal").modal("show");
   }
-  //maybe this was meant to go in if statement?
-  // zipcodeInputEl.value = "";
-  // return;
+  blankInputEl.value = "";
   return inputedZipCode;
 }
 

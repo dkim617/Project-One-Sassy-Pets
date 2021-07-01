@@ -131,3 +131,83 @@ a{
     margin-right: 25px;
     co
 }
+
+/* Pet Modal Styling */
+#myModal {
+    background-color: rgba(146, 146, 146, 0.89);
+}
+
+.modal-content {
+    background-color: rgb(78, 137, 172);
+    font-family: "Bangers", cursive;
+
+}
+
+.pulledPetDescriptors {
+    list-style-type: none;
+}
+
+.pulled-pet-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+#MyModalLabel {
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Error modal styling */
+.error-modal h3 {
+    font-size: 42px;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.error-modal p {
+  font-size: 26px;
+  padding: 3px;
+  margin: 3px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.error-pet-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border: 5px solid #555;
+  box-shadow: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.error-footer {
+  position: relative;
+  padding: 25px;
+  padding-top: 35px;
+  margin-top: 0;
+}
+
+.error-close {
+  padding: 8px;
+  margin: 0;
+  border:rgb(255, 198, 0) 2px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+
