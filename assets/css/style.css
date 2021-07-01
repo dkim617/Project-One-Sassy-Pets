@@ -17,7 +17,8 @@ body {
     
 .navbar-text {
   font-size: 20px;
-  
+  text-decoration: double underline 5px rgb(206, 121, 25);
+
   
 }
    
@@ -28,6 +29,8 @@ body {
     width: 40px;
     height: 40px;
     margin-top: -9px;
+    
+    
 
 }
     
@@ -50,7 +53,7 @@ h1{
 
     font-family: "Bangers", cursive;
     font-size: 40px;
-    margin: 30px;
+    margin: 55px;
     margin-top: 4%;
     text-shadow: 3px 3px rgb(117, 117, 94);
     
@@ -91,7 +94,7 @@ h1{
   box-shadow: 5px 5px 5px rgb(163, 159, 159);
   margin-top: 65px;
   margin-bottom: 65px;
-  margin-left: 95px;
+  margin-left: 135px;
    
  
    
@@ -113,7 +116,7 @@ h1{
 
 .containerSearch {
   float: right;
-  margin-right: 40px;
+  margin-right: 65px;
   
 }
 
