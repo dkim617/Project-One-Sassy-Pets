@@ -37,6 +37,8 @@ var saveBtn = document.querySelector("#save-changes-btn");
 var modalEl = document.getElementById("myModal");
 var closeModalEl = document.getElementsByClassName("closebtn");
 var myErrorEmptyModal = document.querySelector("#MyErrorEmptyModal");
+var blankInputEl = document.querySelector("#input-zip-code");
+var generatedPetIDBtn;
 
 //input value set to the zip code. error messages if empty
 function getInputValue() {
@@ -94,17 +96,14 @@ function saveFavoritePetID(id) {
 
 //create new button attached to save pet
 function createNewPetBtn(newId) {
-  var modal2 = document.getElementById("exampleModal");
+  console.log("RUNNING CREATE NEW PET BTN FXN");
   generatedPetIDLi = document.createElement("li");
   generatedPetIDLi.classList.add("generated-pet-ID-li");
   generatedPetIDBtn = document.createElement("BUTTON");
   generatedPetIDBtn.value = newId;
   console.log("NEW BUTTON VALUE: " + generatedPetIDBtn.value);
-  generatedPetIDBtn.addEventListener("click", function () {
-    console.log("clicked?>");
-    modal2.style.display = "block";
-  });
   generatedPetIDBtn.classList.add("generated-pet-ID-btn");
+  generatedPetIDBtn.classList.add("btn");
   generatedPetIDLi.appendChild(generatedPetIDBtn);
   generatedPetIDBtn.textContent = "\u2764 Future Fur Baby \u2764";
   savedPetsUL.appendChild(generatedPetIDLi);
@@ -270,8 +269,9 @@ searchBtn.addEventListener("click", function () {
   searchParams.gender =
     genderDropdown.options[genderDropdown.selectedIndex].value;
 
-  fetchPet(searchParams);
+  fetchPet(params);
   fetchJoke();
+  blankInputEl.value = "";
   return;
 });
 
@@ -279,7 +279,7 @@ searchBtn.addEventListener("click", function () {
 saveBtn.addEventListener("click", function () {
   console.log("SAVING PET ID");
   let petIDs = localStorage.getItem("savedPetIDArray");
-  petIDs.push(this.value);
+  //petIDs.push(this.value);
   localStorage.setItem("savedPetIDArray", JSON.stringify(petIDs));
   createNewPetBtn(this.value);
 });
