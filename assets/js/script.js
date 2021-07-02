@@ -74,6 +74,7 @@ async function setModalElements(obj) {
   petNameTitle.textContent = isNull(obj.name);
   $(petNameTitle).text(obj.name);
   if (photos.length !== 0) $(searchedPetPic).attr("src", photos[0].large);
+  else if (photos.length == 0) $(searchedPetPic).attr("src", "assets/images/placeholder-with-text.png");
 
   modalPetDescriptionSection.textContent = "Meet your future four-legged best friend, " + isNull(obj.name) + "! They've got a joke for you...";
   listTitle.textContent = "More info about " + isNull(obj.name) + ":"
@@ -111,7 +112,7 @@ function createNewPetBtn(newId) {
   savedPetsUL.appendChild(generatedPetIDLi);
 
   generatedPetIDBtn.addEventListener("click", function (event) {
-    getSavedPet(event.target.value);
+    getSavedPet(event.target.value); 
   });
 }
 
@@ -236,6 +237,7 @@ async function getSavedPet(id) {
     success: function (res) {
       // console.log(res);
       setModalElements(res.animal);
+      fetchJoke();
     },
     error: async function (err) {
       console.log("uh oh ", err);
@@ -251,8 +253,10 @@ function fetchJoke() {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       petJoke.textContent = data.setup + "- " + data.delivery;
+      if (data.setup == undefined || data.delivery == undefined) {
+        petJoke.textContent = "I'm an animal, not a comedian. I don't want to tell jokes!"
+      }
     });
 }
 
@@ -287,4 +291,3 @@ saveBtn.addEventListener("click", function () {
   createNewPetBtn(this.value);
 });
 
-closeModalEl.addEventListener("click", Close);

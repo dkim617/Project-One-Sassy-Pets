@@ -38,6 +38,6 @@ Screenshot of small screen:
 
 <a href="https://github.com/mlward639/Project-One-Sassy-Pets">Link to GitHub Repository</a>
 
-<a href="https://https://mlward639.github.io/Project-One-Sassy-Pets/">Link to deployed URL</a>
+<a href="https://mlward639.github.io/Project-One-Sassy-Pets/">Link to deployed URL</a>
 
 <a href="https://docs.google.com/presentation/d/1zicqnVs3Z2sY0oSLtSRU4ds9Z7dwQOllpUwe8YmPOmU/edit?usp=sharing">Link to powerpoint presentation</a>
