@@ -138,9 +138,9 @@ function createSavedPetBtns() {
 }
 
 //modal close btn
-function Close() {
-  modal.style.display = "none";
-}
+// function Close() {
+//   modal.style.display = "none";
+// }
 
 ////API FUNKS
 
