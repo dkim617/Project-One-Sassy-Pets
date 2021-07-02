@@ -6,11 +6,33 @@ Sassy Pets is a pet adoption website to allow prospective pet owners the ability
 
 ## Technologies used
 APIs: Petfinder API and JokeAPI
+
 CSS Framework: Bootstrap
-Additional libraries: jQuery, Google Font
+
+Additional libraries: jQuery, Google Font, Font Awesome
 
 
 ## Screenshot
+
+Screenshot of deployed URL:
+<img src="assets\images\screenshot-deployed-url.png">
+
+Screenshot of selected search criteria:
+<img src="assets\images\screenshot-deployed-url-with-selected-search-criteria.png">
+
+Screenshot of saved pet buttons:
+<img src="assets\images\screenshot-deployed-url-with-saved-pet-btns.png">
+
+Screenshot of searched pet modal:
+<img src="assets\images\screenshot-deployed-url-pet-modal.png">
+
+Screenshot of error modal:
+<img src="assets\images\screenshot-deployed-url-pet-error-modal.png">
+
+Screenshot of small screen:
+
+<img src="assets\images\screenshot-mobile-responsive-small.png">
+
 
 ## URLs
 
@@ -18,3 +40,4 @@ Additional libraries: jQuery, Google Font
 
 <a href="https://https://mlward639.github.io/Project-One-Sassy-Pets/">Link to deployed URL</a>
 
+<a href="https://docs.google.com/presentation/d/1zicqnVs3Z2sY0oSLtSRU4ds9Z7dwQOllpUwe8YmPOmU/edit?usp=sharing">Link to powerpoint presentation</a>
