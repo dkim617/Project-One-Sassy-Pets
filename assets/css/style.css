@@ -192,6 +192,9 @@ body {
 }
 
 /* Error modal styling */
+.error-modal {
+  height: 1000px;
+}
 .error-modal h3 {
     font-size: 42px;
     text-align: center;
